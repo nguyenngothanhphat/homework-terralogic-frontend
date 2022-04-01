@@ -6,10 +6,10 @@ const rootReducer = combineReducers({
 
 })
 
-const createMiddleware = createMiddlewareSaga();
+const middlewareSaga = createMiddlewareSaga();
 
-const store = createStore(rootReducer, applyMiddleware(createMiddleware))
+const store = createStore(rootReducer, applyMiddleware(middlewareSaga))
 
-createMiddleware.run(rootSaga)
+middlewareSaga.run(rootSaga)
 
 export default store;
