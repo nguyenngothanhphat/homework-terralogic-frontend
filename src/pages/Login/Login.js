@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -13,7 +13,7 @@ const LoginSchema = yup.object().shape({
     .required('Password is required!'),
 });
 
-function Login(props) {
+export default function Login(props) {
   const handleLogin = (e, values, isValid) => {
     e.preventDefault()
     if (!values || !values.username || !values.password) {
@@ -49,9 +49,7 @@ function Login(props) {
             <button type='submit' className="btn btn-success" onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
           </Form>
         )}
-        
       </Formik>
     </div>
   )
 }
-export default Login;
