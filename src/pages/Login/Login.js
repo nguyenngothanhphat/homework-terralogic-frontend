@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import styleApp from '../../App.module.css';
-import styleLogin from './Login.module.css';
+import "./Login.css";
 
 const LoginSchema = yup.object().shape({
   username:yup.string()
@@ -28,12 +28,12 @@ export default function Login(props) {
   }
   return (
     <div className={styleApp.wrapper}>
-      <div className={styleLogin.loginWrapper} style={{height: window.innerHeight}}>
-        <div className={styleLogin.loginImage}>
+      <div className="login-wrapper" style={{height: window.innerHeight}}>
+        <div className="login-image">
           <img src="../images/login-image.png" alt="login-image" />
         </div>
-        <div className={styleLogin.loginForm}>
-          <h2 className={styleLogin.loginTitle}>Login Form</h2>
+        <div className="login-form">
+          <h2 className="login-title">Login Form</h2>
           <Formik
             initialValues={{
               username: '',
@@ -43,28 +43,31 @@ export default function Login(props) {
           >
             {({errors, touched, values, isValid}) => (
               <Form onSubmit={handleLogin}>
-                <div className={styleLogin.formWrapper}>
-                  <label className={styleLogin.labelLogin}>Username</label>
-                  <div className="input-group" style={{marginBottom: '20px'}}>
+                <div className="form-wrapper">
+                  <label className="login-label">Username</label>
+                  {/* <div className="input-group" style={{marginBottom: '20px'}}>
                     <div className="input-group-prepend">
                       <div className="input-group-text"><i className="fas fa-user"></i></div>
                     </div>
-                    <Field type="text" name="username" value={values.username} className={styleLogin.formInput} />
+                  </div> */}
+                  <div className="login-input-wrapper">
+                    <Field type="text" name="username" value={values.username} className="login-input" />
                   </div>
-                  {errors.username && touched.username && <div className={styleLogin.validateError}>{errors.username}</div>}
+                  
+                  {errors.username && touched.username && <div className="login-error">{errors.username}</div>}
                 </div>
-                <div className={styleLogin.formWrapper}>
-                  <label className={styleLogin.labelLogin}>Password</label>
+                <div className="form-wrapper">
+                  <label className="login-label">Password</label>
                   <div className="input-group" style={{marginBottom: '20px'}}>
                     <div className="input-group-prepend">
                       <div className="input-group-text"><i className="fas fa-key"></i></div>
                     </div>
-                    <Field type="password" name="password" value={values.password} className={styleLogin.formInput} />
+                    <Field type="password" name="password" value={values.password} className="login-input" />
                   </div>
-                  {errors.password && touched.password && <div className={styleLogin.validateError}>{errors.password}</div>}
+                  {errors.password && touched.password && <div className="validate-error">{errors.password}</div>}
                 </div>
-                <button type='submit' className={styleLogin.btnLogin} onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
-                <button type="submit" className={styleLogin.btnLoginGoogle}>Login with Terralogic email</button>
+                <button type='submit' className="btn-login" onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
+                <button type="submit" className="btn-login-google">Login with Terralogic email</button>
               </Form>
             )}
           </Formik>
