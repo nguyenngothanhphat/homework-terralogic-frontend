@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { useDropzone } from 'react-dropzone';
+import { ToastContainer , toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './DragUpload.module.css';
 
 export default function DragUpload(props) {
@@ -19,11 +21,17 @@ export default function DragUpload(props) {
     // validator: acceptValidate,
     onDrop: (acceptedFiles) => {
     console.log("🚀 ~ file: DragUpload.js ~ line 10 ~ DragUpload ~ acceptedFiles", acceptedFiles)
-      setFiles(
-        acceptedFiles.map((file) => Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        }))
-      )
+      if (acceptedFiles.length === 0) {
+        console.log("IT WORK")
+        toast.error('Required is docs or pdf');
+      } else {
+        setFiles(
+          acceptedFiles.map((file) => Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          }))
+        )
+        toast.success('Upload file successfully');
+      }
     }
   })
   const showFileUploaded = () => {
@@ -39,6 +47,7 @@ export default function DragUpload(props) {
   console.log("getInputProps", getInputProps())
   return (
     <div>
+      <ToastContainer />
       <div {...getRootProps()} className={styles.dropzone}>
         <input {...getInputProps()} />
         <p>Click or Drag the file here to Upload a new Document</p>
