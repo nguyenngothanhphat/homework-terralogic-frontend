@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+.container {
+  overflow: hidden;
+  position: relative;
+}
+.wrapper {
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 1300px;
+  }
+  .wrapper {
+    width: 1249px;
+  }
+}
+@media screen and (max-width: 767px) {
+  html {
+    font-size: calc(100vw / 7.5);
+  }
+  .container {
+    min-width: 320px;
+  }
+  .wrapper {
+    width: 100%;
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
+}

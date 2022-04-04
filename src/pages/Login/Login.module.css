@@ -1,0 +1,72 @@
+.loginWrapper {
+  display: flex;
+  align-items: center;
+}
+.loginForm {
+  width: 50%;
+}
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.loginTitle {
+  font-size: 40px;
+  color: #161c29;
+}
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.formInput {
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid gray;
+  outline: none;
+  width: 400px;
+}
+.validateError {
+  color: #ff4d4f;
+  margin-bottom: 10px;
+}
+.labelLogin {
+  font-size: 17px;
+  color: #707177;
+  margin-bottom: 10px;
+}
+.btnLogin, .btnLoginGoogle {
+  width: 280px;
+  height: 40px;
+  border-radius: 30px;
+  display: block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.btnLogin {
+  background: #1c90fd;
+  border: 1px solid #1c90fd;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.btnLogin:hover {
+  opacity: 0.8;
+}
+.btnLoginGoogle {
+  background: #fff;
+  color: #707177;
+  border: 1px solid #d9d9d9
+}
+@media screen and (min-width: 768px) {
+  .loginImage {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .loginImage {
+    display: none;
+  }
+}

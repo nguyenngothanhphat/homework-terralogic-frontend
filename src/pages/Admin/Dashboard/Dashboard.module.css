@@ -1,0 +1,22 @@
+table, td, th, tr {
+  border: 1px solid #817e7e;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table tr th {
+  font-size: 17px;
+}
+thead tr {
+  background: #c9c7c7;
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+}
+.tableAction {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #000000;
+}

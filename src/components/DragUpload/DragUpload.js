@@ -38,10 +38,10 @@ export default function DragUpload(props) {
   // console.log("🚀 ~ file: DragUpload.js ~ line 6 ~ DragUpload ~ files", files)
   console.log("getInputProps", getInputProps())
   return (
-    <div className="container">
+    <div>
       <div {...getRootProps()} className={styles.dropzone}>
         <input {...getInputProps()} />
-        <p>Drop file here</p>
+        <p>Click or Drag the file here to Upload a new Document</p>
         {showFileUploaded()}
       </div>
     </div>
