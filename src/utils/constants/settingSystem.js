@@ -1,4 +1,4 @@
-export const DOMAIN = '';
+export const DOMAIN = 'https://homeworkterralogic.herokuapp.com/api';
 export const TOKEN = 'ACCESSTOKEN';
 export const USER_LOGIN = 'USER_LOGIN';
 export const STATUS_CODE = {
