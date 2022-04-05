@@ -2,12 +2,12 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import Footer from './Layout/Footer/Footer'
 import Header from './Layout/Header/Header'
-import styles from '../../App.module.css'
+import "../../App.css";
 
 export default function HomeTemplate(props) {
   const {Component, ...resParams} = props
   return <Route {...resParams} render={(propsRoute) => {
-    return <div className={styles.container}>
+    return <div className="container">
       <Header />
       <Component {...propsRoute} />
       <Footer />

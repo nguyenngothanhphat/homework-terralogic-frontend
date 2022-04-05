@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
-import styleApp from '../../App.module.css';
+import "../../App.css"
 import "./Login.css";
 
 const LoginSchema = yup.object().shape({
@@ -27,50 +27,43 @@ export default function Login(props) {
     }
   }
   return (
-    <div className={styleApp.wrapper}>
-      <div className="login-wrapper" style={{height: window.innerHeight}}>
-        <div className="login-image">
-          <img src="../images/login-image.png" alt="login-image" />
-        </div>
-        <div className="login-form">
-          <h2 className="login-title">Login Form</h2>
-          <Formik
-            initialValues={{
-              username: '',
-              password: ''
-            }}
-            validationSchema={LoginSchema}
-          >
-            {({errors, touched, values, isValid}) => (
-              <Form onSubmit={handleLogin}>
-                <div className="form-wrapper">
-                  <label className="login-label">Username</label>
-                  {/* <div className="input-group" style={{marginBottom: '20px'}}>
-                    <div className="input-group-prepend">
-                      <div className="input-group-text"><i className="fas fa-user"></i></div>
+    <div className="container">
+      <div className="wrapper">
+        <div className="login-wrapper" style={{height: window.innerHeight}}>
+          <div className="login-image">
+            <img src="../images/login-image.png" alt="login-image" />
+          </div>
+          <div className="login-form">
+            <h2 className="login-title">Login Form</h2>
+            <Formik
+              initialValues={{
+                username: '',
+                password: ''
+              }}
+              validationSchema={LoginSchema}
+            >
+              {({errors, touched, values, isValid}) => (
+                <Form onSubmit={handleLogin}>
+                  <div className="form-wrapper">
+                    <label className="login-label">Username</label>
+                    <div className="login-input-wrapper">
+                      <Field type="text" name="username" value={values.username} className="login-input" />
                     </div>
-                  </div> */}
-                  <div className="login-input-wrapper">
-                    <Field type="text" name="username" value={values.username} className="login-input" />
+                    {errors.username && touched.username && <div className="login-error">{errors.username}</div>}
                   </div>
-                  
-                  {errors.username && touched.username && <div className="login-error">{errors.username}</div>}
-                </div>
-                <div className="form-wrapper">
-                  <label className="login-label">Password</label>
-                  <div className="input-group" style={{marginBottom: '20px'}}>
-                    <div className="input-group-prepend">
-                      <div className="input-group-text"><i className="fas fa-key"></i></div>
+                  <div className="form-wrapper">
+                    <label className="login-label">Password</label>
+                    <div className="login-input-wrapper">
+                      <Field type="password" name="password" value={values.password} className="login-input" />
                     </div>
-                    <Field type="password" name="password" value={values.password} className="login-input" />
+                    {errors.password && touched.password && <div className="login-error">{errors.password}</div>}
                   </div>
-                  {errors.password && touched.password && <div className="validate-error">{errors.password}</div>}
-                </div>
-                <button type='submit' className="btn-login" onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
-                <button type="submit" className="btn-login-google">Login with Terralogic email</button>
-              </Form>
-            )}
-          </Formik>
+                  <button type='submit' className="btn-login" onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
+                  <button type="submit" className="btn-login-google">Login with Terralogic email</button>
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </div>

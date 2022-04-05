@@ -1,7 +1,12 @@
 import React from 'react';
+import "../../../../App.css"
 import "./Header.css"
 
 export default function Header() {
+  const openSidebar = () => {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("content-button").classList.toggle("active");
+  }
   return (
     <header>
       <div className="header-logo-wrapper">
@@ -10,9 +15,9 @@ export default function Header() {
         </a>
       </div>
       <div className="header-content">
-        <a href="javascript:;" className="content-button" id="content-button" onclick="openSidebar()">
+        <a href="javascript:;" className="content-button" id="content-button" onClick={() => {openSidebar()}}>
           <i className="fas fa-bars content-open"></i>
-          <i className="fa-solid fa-xmark content-close"></i>
+          <i className="fas fa-times content-close"></i>
         </a>
         <div className="content-account">
           <figure className="account-image">

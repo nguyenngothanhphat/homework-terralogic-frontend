@@ -1,9 +1,9 @@
 import React from 'react';
-import styleApp from '../../App.module.css'
+import "../../App.css"
 
 export default function Home(props) {
   return (
-    <div className={styleApp.wrapper}>
+    <div className="wrapper">
       <table>
         <thead>
           <tr>
