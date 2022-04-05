@@ -8,7 +8,6 @@ import { Redirect } from 'react-router-dom';
 
 export default function AdminTemplate(props) {
   if (!localStorage.getItem(USER_LOGIN)) {
-    alert('Bạn không có quyền truy cập vào trang này');
     return <Redirect to="/login" />
   }
   const {Components, ...restParams} = props;

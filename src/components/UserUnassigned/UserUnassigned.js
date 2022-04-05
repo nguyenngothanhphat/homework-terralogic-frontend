@@ -4,7 +4,7 @@ export default function UserUnassigned(props) {
   return (
     <div>
       <h2>User Unassigned</h2>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>

@@ -76,19 +76,20 @@
     flex: 1;
   }
   .sidebar{
-    width: 228px;
+    width: 270px;
     height: 100vh;
     padding: 20px;
     border-right: 2px solid rgb(231, 244, 250);
     animation-name: openSidebar;
     animation-duration: 0.7s;
+    transition: all 0.5s linear;
   }
   .sidebar.active{
     position: relative;
   }
   @keyframes openSidebar {
-    from {left: -230px; opacity: 0}
-    to {left: 0; opacity: 1}
+    from {width: 0; left: -230px; opacity: 0}
+    to {width: 270px; left: 0; opacity: 1}
   }
   .sidebar-menu li:not(:last-child){
     margin-bottom: 25px;

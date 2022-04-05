@@ -1,12 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import swal from 'sweetalert'
 import "../../App.css"
 import "./Login.css";
+import { loginAction } from '../../redux/actions/AuthAction';
 
 const LoginSchema = yup.object().shape({
-  username:yup.string()
+  name:yup.string()
     .min(2, 'Too Short !')
     .max(50, 'Too Long !')
     .required('Username is required!'),
@@ -17,19 +19,21 @@ const LoginSchema = yup.object().shape({
 });
 
 export default function Login(props) {
+  const dispatch = useDispatch();
   const handleLogin = (e, values, isValid) => {
     e.preventDefault()
-    if (!values || !values.username || !values.password) {
+    if (!values || !values.name || !values.password) {
       return;
     }
     if (isValid) {
       /* Xử lý truyền data vào api */
-      swal({
-        title: "Congratulations! Successful login",
-        text: "You clicked the button!",
-        icon: "success",
-        button: "Go to admin page",
-      });
+      dispatch(loginAction(values))
+      // swal({
+      //   title: "Congratulations! Successful login",
+      //   text: "You clicked the button!",
+      //   icon: "success",
+      //   button: "Go to admin page",
+      // });
       console.log(values)
     }
   }
@@ -44,7 +48,7 @@ export default function Login(props) {
             <h2 className="login-title">Login Form</h2>
             <Formik
               initialValues={{
-                username: '',
+                name: '',
                 password: ''
               }}
               validationSchema={LoginSchema}
@@ -54,9 +58,9 @@ export default function Login(props) {
                   <div className="form-wrapper">
                     <label className="login-label">Username</label>
                     <div className="login-input-wrapper">
-                      <Field type="text" name="username" value={values.username} className="login-input" />
+                      <Field type="text" name="name" value={values.name} className="login-input" />
                     </div>
-                    {errors.username && touched.username && <div className="login-error">{errors.username}</div>}
+                    {errors.name && touched.name && <div className="login-error">{errors.name}</div>}
                   </div>
                   <div className="form-wrapper">
                     <label className="login-label">Password</label>
