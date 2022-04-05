@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import "./Modal.css";
 
 export default function Modal(props) {
@@ -11,7 +11,7 @@ export default function Modal(props) {
     <div id="myModal" className="modal" onClick={() => {closeModalOverlay()}}>
       <div className="modal-content">
         {/* <span className="close">&times;</span> */}
-        <p>{Component}</p>
+        {Component}
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
+import swal from 'sweetalert'
 import "../../App.css"
 import "./Login.css";
 
@@ -23,6 +24,12 @@ export default function Login(props) {
     }
     if (isValid) {
       /* Xử lý truyền data vào api */
+      swal({
+        title: "Congratulations! Successful login",
+        text: "You clicked the button!",
+        icon: "success",
+        button: "Go to admin page",
+      });
       console.log(values)
     }
   }

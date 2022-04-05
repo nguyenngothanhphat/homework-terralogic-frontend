@@ -15,7 +15,7 @@ export default function Header() {
         </a>
       </div>
       <div className="header-content">
-        <a href="javascript:;" className="content-button" id="content-button" onClick={() => {openSidebar()}}>
+        <a href="javascript:void(0)" className="content-button" id="content-button" onClick={() => {openSidebar()}}>
           <i className="fas fa-bars content-open"></i>
           <i className="fas fa-times content-close"></i>
         </a>
