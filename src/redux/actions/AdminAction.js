@@ -1,7 +1,8 @@
 import { adminServices } from "../../services/AdminServices"
 import { 
   GET_ALL_DOCUMENT, 
-  GET_ALL_USER_UNASSIGNED 
+  GET_ALL_USER_UNASSIGNED,
+  UPDATE_DOCUMENT
 } from "../constants/AdminConstant";
 
 export const getAllDocumentAction = () => {
@@ -22,7 +23,10 @@ export const getAllDocumentAction = () => {
 export const updateDocumentAction = (dataUpdate, id) => {
   return async (dispatch) => {
     try {
-      const {data, status} = await adminServices.updateDocument(dataUpdate, id);
+      const {status} = await adminServices.updateDocument(dataUpdate, id);
+      if (status === 200) {
+        dispatch({type: GET_ALL_DOCUMENT})
+      }
     } catch (err) {
       console.log("error", err);
     }
