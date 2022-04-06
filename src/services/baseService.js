@@ -31,6 +31,16 @@ export class baseService {
       }
     })
   };
+  patch = (url, data) => {
+    return Axios({
+      url: `${DOMAIN}/${url}`,
+      method: 'PATCH',
+      data: data,
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)
+      }
+    })
+  };
   delete = (url) => {
     return Axios({
       url: `${DOMAIN}/${url}`,

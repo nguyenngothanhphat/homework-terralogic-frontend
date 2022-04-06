@@ -1,11 +1,12 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import swal from 'sweetalert'
 import "../../App.css"
 import "./Login.css";
-import { loginAction } from '../../redux/actions/AuthAction';
+import { LoginAction } from '../../redux/actions/AuthAction';
 
 const LoginSchema = yup.object().shape({
   name:yup.string()
@@ -19,6 +20,7 @@ const LoginSchema = yup.object().shape({
 });
 
 export default function Login(props) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleLogin = (e, values, isValid) => {
     e.preventDefault()
@@ -27,7 +29,7 @@ export default function Login(props) {
     }
     if (isValid) {
       /* Xử lý truyền data vào api */
-      dispatch(loginAction(values))
+      dispatch(LoginAction(values, history))
       // swal({
       //   title: "Congratulations! Successful login",
       //   text: "You clicked the button!",

@@ -2,7 +2,7 @@ import { authService } from "../../services/AuthService"
 import { LOGIN } from "../constants/AuthConstant";
 // import { history } from '../../App'
 
-export const loginAction = (dataLogin) => {
+export const LoginAction = (dataLogin, history) => {
   console.log("🚀 ~ file: AuthAction.js ~ line 4 ~ loginAction ~ data", dataLogin)
   return async (dispatch) => {
     try {
@@ -13,7 +13,7 @@ export const loginAction = (dataLogin) => {
           type: LOGIN,
           data
         })
-        // history.goBack();
+        history.goBack();
       }
     } catch (err) {
       console.log("error", err);

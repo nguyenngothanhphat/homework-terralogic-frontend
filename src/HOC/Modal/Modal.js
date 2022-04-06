@@ -5,14 +5,18 @@ import "./Modal.css";
 export default function Modal(props) {
   const Component = useSelector(state => state.ModalReducer.Component);
   const closeModalOverlay = () => {
-    document.getElementById("myModal").style.display = "none";
+    props.closePopup()
   }
   return (
-    <div id="myModal" className="modal" onClick={() => {closeModalOverlay()}}>
-      <div className="modal-content">
-        {/* <span className="close">&times;</span> */}
-        {Component}
-      </div>
-    </div>
+    <div className={`custom-model-main ${props.isOpen ? "model-open" : ""}`}>
+      <div className="custom-model-inner">        
+        <div className="custom-model-wrap">
+          <div className="pop-up-content-wrap">
+            {Component}
+          </div>
+        </div>  
+      </div>  
+    <div className="bg-overlay" onClick={() => {closeModalOverlay()}}></div>
+  </div> 
   )
 }

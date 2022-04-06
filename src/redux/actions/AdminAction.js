@@ -1,5 +1,8 @@
 import { adminServices } from "../../services/AdminServices"
-import { GET_ALL_DOCUMENT } from "../constants/AdminConstant";
+import { 
+  GET_ALL_DOCUMENT, 
+  GET_ALL_USER_UNASSIGNED 
+} from "../constants/AdminConstant";
 
 export const getAllDocumentAction = () => {
   return async (dispatch) => {
@@ -13,6 +16,30 @@ export const getAllDocumentAction = () => {
       }
     } catch (err) {
       console.log('error', err)
+    }
+  }
+}
+export const updateDocumentAction = (dataUpdate, id) => {
+  return async (dispatch) => {
+    try {
+      const {data, status} = await adminServices.updateDocument(dataUpdate, id);
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const getAllUserUnassignedAction = (id) => {
+  return async (dispatch) => {
+    try {
+      const {data, status} = await adminServices.getAllUserUnassigned(id);
+      if (status === 200) {
+        dispatch({
+          type: GET_ALL_USER_UNASSIGNED,
+          data
+        })
+      }
+    } catch (err) {
+      console.log("error", err);
     }
   }
 }
