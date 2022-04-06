@@ -57,6 +57,7 @@
   box-sizing: border-box;
   max-height: calc(100vh - 70px);
 	overflow-y: auto;
+  height: 800px;
 }
 .model-open .custom-model-inner {
   -webkit-transform: translate(0, 0);
@@ -91,4 +92,7 @@
   z-index: 99;
   font-size: 30px;
   color: #fff;
+}
+.pop-up-content-wrap {
+  height: 100%
 }
