@@ -8,10 +8,16 @@ export class AdminServices extends baseService {
     return this.get(`api/admin/documents/${id}`);
   }
   updateDocument = (data, id) => {
-    return this.patch(`api/admin/documents/${id}`, data)
+    return this.patch(`api/admin/documents/${id}`, data);
   }
   getAllUserUnassigned = (id) => {
-    return this.get(`api/admin/documents/confirm/${id}`)
+    return this.get(`api/admin/documents/confirm/${id}`);
+  }
+  createDocument = (data) => {
+    return this.post(`api/admin/documents`, data);
+  }
+  deleteDocument = (id) => {
+    return this.delete(`api/admin/documents/${id}`);
   }
 }
 export const adminServices = new AdminServices();

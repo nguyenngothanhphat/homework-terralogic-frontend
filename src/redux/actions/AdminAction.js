@@ -1,8 +1,7 @@
 import { adminServices } from "../../services/AdminServices"
 import { 
   GET_ALL_DOCUMENT, 
-  GET_ALL_USER_UNASSIGNED,
-  UPDATE_DOCUMENT
+  GET_ALL_USER_UNASSIGNED
 } from "../constants/AdminConstant";
 
 export const getAllDocumentAction = () => {
@@ -40,6 +39,34 @@ export const getAllUserUnassignedAction = (id) => {
         dispatch({
           type: GET_ALL_USER_UNASSIGNED,
           data
+        })
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const createDocumentAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const {status} = await adminServices.createDocument(data);
+      if (status === 200) {
+        dispatch({
+          type: GET_ALL_DOCUMENT
+        })
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const deleteDocumentAction = (id) => {
+  return async (dispatch) => {
+    try {
+      const {status} = await adminServices.deleteDocument(id);
+      if (status === 200) {
+        dispatch({
+          type: GET_ALL_DOCUMENT
         })
       }
     } catch (err) {

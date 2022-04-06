@@ -9,7 +9,7 @@ import UserUnassigned from '../../../components/UserUnassigned/UserUnassigned';
 
 import "../../../App.css";
 import "./Dashboard.css";
-import { getAllDocumentAction } from '../../../redux/actions/AdminAction';
+import { deleteDocumentAction, getAllDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import { Link } from 'react-router-dom';
 
@@ -47,6 +47,14 @@ export default function Dashboard(props) {
   const getAllDocument = () => {
     dispatch(getAllDocumentAction());
   }
+  const deleteDocument = (e, doc) => {
+    e.preventDefault();
+    const {_id: id, title: title} = doc;
+    let result = window.confirm(`Bạn có muốn xóa ${title} document không ?`);
+    if (result) {
+      dispatch(deleteDocumentAction(id));
+    }
+  }
   useEffect(() => {
     getAllDocument()
   }, [])
@@ -60,7 +68,7 @@ export default function Dashboard(props) {
           <td>
             <a href="#" onClick={(e) => {openPopupEdit(e, doc)}}><i className="fas fa-edit table-action"></i></a>
             <a href="#" onClick={(e) => {openPopupPDF(e, doc.url)}}><i className="fas fa-eye table-action"></i></a>
-            <a href="#"><i className="fas fa-trash table-action"></i></a>
+            <a href="#" onClick={(e) => {deleteDocument(e, doc)}}><i className="fas fa-trash table-action"></i></a>
           </td>
         </tr>
       )
