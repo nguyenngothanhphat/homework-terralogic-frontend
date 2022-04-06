@@ -5,19 +5,19 @@ import {getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
 export default function UserUnassigned(props) {
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
   const dispatch = useDispatch();
-  let {_id} = props.doc;
+  const {_id: id} = props.doc;
   useEffect(() => {
-    getAllUsersUnassigned(_id);
-  },[_id])
-  const getAllUsersUnassigned = (_id) => {
-    dispatch(getAllUserUnassignedAction(_id));
+    getAllUsersUnassigned(id);
+  },[id])
+  const getAllUsersUnassigned = (id) => {
+    dispatch(getAllUserUnassignedAction(id));
   }
   const showUserUnassigned = () => {
     return usersUnassigned.map((user, index) => {
       return (
         <tr key={index}>
           <td>{user.name}</td>
-          <td><input type="checkbox" value={user._id} /></td>
+          <td><input type="checkbox" value={user.id} /></td>
         </tr>
       )
     })
