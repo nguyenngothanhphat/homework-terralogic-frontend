@@ -4,7 +4,7 @@ import { DOMAIN, DOMAIN_TERRA,  TOKEN } from "../utils/constants/settingSystem"
 export class baseService {
   get = (url) => {
     return Axios({
-      url: `${DOMAIN_TERRA}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)
@@ -13,7 +13,7 @@ export class baseService {
   };
   post = (url, data) => {
     return Axios({
-      url: `${DOMAIN_TERRA}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: 'POST',
       data: data,
       headers: {
