@@ -11,9 +11,11 @@ import "../../../App.css";
 import "./Dashboard.css";
 import { deleteDocumentAction, getAllDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
+import CardDocument from '../../../components/CardDocument/CardDocument';
 
 export default function Dashboard(props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModeCard, setIsModeCard] = useState(true);
   const documents = useSelector(state => state.AdminReducer.documents);
   const dispatch = useDispatch();
   const closePopup = () => {
@@ -55,7 +57,7 @@ export default function Dashboard(props) {
     }
   }
   useEffect(() => {
-    getAllDocument()
+    getAllDocument();
   }, [])
   const showDocument = () => {
     return documents.map((doc, index) => {
@@ -76,20 +78,24 @@ export default function Dashboard(props) {
   return (
     <main className="main-content">
       <Sidebar />
-      <div style={{flex: 1}}>
-        <table>
-          <thead>
-            <tr>
-              <th>Document Name</th>
-              <th>Last Update Date</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {showDocument()}
-          </tbody>
-        </table>
+      <div style={{flex: 1, marginTop: '20px'}}>
+        <button className="btn btn-primary mr-3 ml-3 mb-5" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
+        <button className="btn btn-primary mb-5" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
+        {isModeCard ? (<CardDocument documents={documents} />) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Document Name</th>
+                <th>Last Update Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {showDocument()}
+            </tbody>
+          </table>
+        )}
         <DragUpload showbtn={true}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>

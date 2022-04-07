@@ -1,7 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {getAllDocumentsUserAction} from '../../redux/actions/UserAction';
 import "../../App.css"
 
 export default function Home(props) {
+  const userDocuments = useSelector(state => state.UserReducer.userDocuments);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getAllDocumentsUser();
+  }, [])
+  const getAllDocumentsUser = () => {
+    dispatch(getAllDocumentsUserAction());
+  }
+  const showAllDocumentsUser = () => {
+    return userDocuments.map((userDoc, index) => {
+      return (
+        <tr key={index}>
+          <td>{userDoc.docId.title}</td>
+          <td>{userDoc.docId.updatedAt}</td>
+          <td>
+            <a href="#"><i className={`fas fa-eye`}></i></a>
+          </td>
+          <td>{userDoc.status}</td>
+        </tr>
+      )
+    })
+  }
   return (
     <div className="wrapper">
       <table>
@@ -14,38 +38,7 @@ export default function Home(props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Document 1</td>
-            <td>December 10, 2021</td>
-            <td>
-              <a href="#"><i className={`fas fa-eye`}></i></a>
-            </td>
-            <td>Completed</td>
-          </tr>
-          <tr>
-            <td>Document 1</td>
-            <td>December 10, 2021</td>
-            <td>
-              <a href="#"><i className={`fas fa-eye`}></i></a>
-            </td>
-            <td>Open</td>
-          </tr>
-          <tr>
-            <td>Document 1</td>
-            <td>December 10, 2021</td>
-            <td>
-              <a href="#"><i className={`fas fa-eye`}></i></a>
-            </td>
-            <td>Open</td>
-          </tr>
-          <tr>
-            <td>Document 1</td>
-            <td>December 10, 2021</td>
-            <td>
-              <a href="#"><i className={`fas fa-eye`}></i></a>
-            </td>
-            <td>Reading</td>
-          </tr>
+          {showAllDocumentsUser()}
         </tbody>
       </table>
     </div>

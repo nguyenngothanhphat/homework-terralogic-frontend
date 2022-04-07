@@ -4,12 +4,14 @@ import reduxThunk from 'redux-thunk';
 import { rootSaga } from "./sagas/rootSaga";
 import {ModalReducer} from './reducers/ModalReducer';
 import {AuthReducer} from './reducers/AuthReducer';
-import {AdminReducer} from './reducers/AdminReducer'
+import {AdminReducer} from './reducers/AdminReducer';
+import {UserReducer} from './reducers/UserReducer';
 
 const rootReducer = combineReducers({
   ModalReducer,
   AuthReducer,
-  AdminReducer
+  AdminReducer,
+  UserReducer
 })
 
 const middlewareSaga = createMiddlewareSaga();

@@ -8,8 +8,6 @@ export const getAllDocumentAction = () => {
   return async (dispatch) => {
     try {
       const {data, status} = await adminServices.getAllDocument();
-      console.log("🚀 ~ file: AdminAction.js ~ line 11 ~ return ~ status", status)
-      console.log("🚀 ~ file: AdminAction.js ~ line 11 ~ return ~ data", data)
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT,
@@ -66,12 +64,20 @@ export const deleteDocumentAction = (id) => {
   return async (dispatch) => {
     try {
       const {status} = await adminServices.deleteDocument(id);
-      console.log("🚀 ~ file: AdminAction.js ~ line 67 ~ return ~ status", status)
       // if (status === 200) {
       //   dispatch({
       //     type: GET_ALL_DOCUMENT
       //   })
       // }
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const assignUserForDocument = (id, data) => {
+  return async (dispatch) => {
+    try {
+      const {status} = await adminServices.assignUserForDocument(id, data);
     } catch (err) {
       console.log("error", err);
     }

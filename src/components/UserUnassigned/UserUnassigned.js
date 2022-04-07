@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
+import {assignUserForDocument, getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
 
-let arrUser = [];
 export default function UserUnassigned(props) {
+  const [userIds, setUserIds] = useState([])
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
   const dispatch = useDispatch();
   const {_id: id} = props.doc;
@@ -17,9 +17,15 @@ export default function UserUnassigned(props) {
     const value = e.target.value;
     let isChecked = e.target.checked;
     if (isChecked) {
-      arrUser.push(value)
+      setUserIds([
+        ...userIds, value
+      ])
     }
-    console.log("arrUser", arrUser);
+    
+  }
+  const handleConfirmAssign = (e) => {
+    e.preventDefault();
+    dispatch(assignUserForDocument(id, userIds));
   }
   const showUserUnassigned = () => {
     return usersUnassigned.map((user, index) => {
@@ -45,7 +51,7 @@ export default function UserUnassigned(props) {
           {showUserUnassigned()}
         </tbody>
       </table>
-      <button className="btn btn-primary">Confirm</button>
+      <button className="btn btn-primary" onClick={(e) => {handleConfirmAssign(e)}}>Confirm</button>
     </div>
   )
 }
