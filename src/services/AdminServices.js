@@ -20,7 +20,7 @@ export class AdminServices extends baseService {
     return this.delete(`api/admin/documents/${id}`);
   }
   assignUserForDocument = (id, data) => {
-    return this.post(`api/admin/documents/${id}/assign`);
+    return this.post(`api/admin/documents/${id}/assign`, data);
   }
 }
 export const adminServices = new AdminServices();

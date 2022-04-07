@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {assignUserForDocument, getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
+import "./UserUnassigned.css";
 
 export default function UserUnassigned(props) {
   const [userIds, setUserIds] = useState([])
@@ -25,6 +26,7 @@ export default function UserUnassigned(props) {
   }
   const handleConfirmAssign = (e) => {
     e.preventDefault();
+    console.log("UserIds", userIds);
     dispatch(assignUserForDocument(id, userIds));
   }
   const showUserUnassigned = () => {
@@ -39,7 +41,7 @@ export default function UserUnassigned(props) {
   }
   return (
     <div>
-      <h2>User Unassigned</h2>
+      <h2 className="unassigned-title">User Unassigned</h2>
       <table className="table">
         <thead>
           <tr>
@@ -51,7 +53,7 @@ export default function UserUnassigned(props) {
           {showUserUnassigned()}
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={(e) => {handleConfirmAssign(e)}}>Confirm</button>
+      <button className="btn btn-primary btn-confirm" onClick={(e) => {handleConfirmAssign(e)}}>Confirm</button>
     </div>
   )
 }

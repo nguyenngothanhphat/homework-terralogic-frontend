@@ -26,7 +26,7 @@ export default function DragUpload(props) {
         <input type="file" accept=".doc, .docx, .pdf" onChange={(e) => handleDrapUpload(e)} />
         <p className="dropzone-text">Click or Drag the file here to Upload a new Document</p>
       </div>
-      {files &&showbtn&& (<button className="btn btn-success" onClick={(e) => {handleUploadDocument(e)}}>Upload</button>) }
+      {files &&showbtn&& (<button className="btn btn-success text-center" onClick={(e) => {handleUploadDocument(e)}}>Upload</button>) }
     </div>
   )
 }

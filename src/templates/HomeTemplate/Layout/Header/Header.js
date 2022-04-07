@@ -9,7 +9,7 @@ export default function Header(props) {
         </a>
       </div>
       <div className="header-content">
-        <a href="javascript:void(0)" className="content-button" id="content-button">
+        <a href="#" className="content-button" id="content-button">
     
         </a>
         <div className="content-account">

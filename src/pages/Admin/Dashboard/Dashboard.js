@@ -15,7 +15,7 @@ import CardDocument from '../../../components/CardDocument/CardDocument';
 
 export default function Dashboard(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isModeCard, setIsModeCard] = useState(true);
+  const [isModeCard, setIsModeCard] = useState(false);
   const documents = useSelector(state => state.AdminReducer.documents);
   const dispatch = useDispatch();
   const closePopup = () => {

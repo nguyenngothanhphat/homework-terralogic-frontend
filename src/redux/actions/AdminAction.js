@@ -75,6 +75,7 @@ export const deleteDocumentAction = (id) => {
   }
 }
 export const assignUserForDocument = (id, data) => {
+console.log("🚀 ~ file: AdminAction.js ~ line 78 ~ assignUserForDocument ~ data", data)
   return async (dispatch) => {
     try {
       const {status} = await adminServices.assignUserForDocument(id, data);
