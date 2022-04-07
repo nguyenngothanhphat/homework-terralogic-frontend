@@ -1,4 +1,5 @@
-import { adminServices } from "../../services/AdminServices"
+import { adminServices } from "../../services/AdminServices";
+import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 import { 
   GET_ALL_DOCUMENT, 
   GET_ALL_USER_UNASSIGNED
@@ -7,12 +8,14 @@ import {
 export const getAllDocumentAction = () => {
   return async (dispatch) => {
     try {
+      dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllDocument();
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT,
           data
         })
+        dispatch(hideLoadingAction())
       }
     } catch (err) {
       console.log('error', err)
@@ -34,12 +37,14 @@ export const updateDocumentAction = (dataUpdate, id) => {
 export const getAllUserUnassignedAction = (id) => {
   return async (dispatch) => {
     try {
+      dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllUserUnassigned(id);
       if (status === 200) {
         dispatch({
           type: GET_ALL_USER_UNASSIGNED,
           data
         })
+        dispatch(hideLoadingAction())
       }
     } catch (err) {
       console.log("error", err);
@@ -49,12 +54,14 @@ export const getAllUserUnassignedAction = (id) => {
 export const createDocumentAction = (data) => {
   return async (dispatch) => {
     try {
-      const {status} = await adminServices.createDocument(data);
+      dispatch(showLoadingAction())
+      await adminServices.createDocument(data);
       // if (status === 200) {
       //   dispatch({
       //     type: GET_ALL_DOCUMENT
       //   })
       // }
+      dispatch(hideLoadingAction())
     } catch (err) {
       console.log("error", err);
     }

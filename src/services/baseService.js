@@ -23,7 +23,7 @@ export class baseService {
   };
   put = (url, data) => {
     return Axios({
-      url: `${DOMAIN_TERRA}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: 'PUT',
       data: data,
       headers: {
@@ -33,7 +33,7 @@ export class baseService {
   };
   patch = (url, data) => {
     return Axios({
-      url: `${DOMAIN_TERRA}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: 'PATCH',
       data: data,
       headers: {
@@ -43,7 +43,7 @@ export class baseService {
   };
   delete = (url) => {
     return Axios({
-      url: `${DOMAIN_TERRA}/${url}`,
+      url: `${DOMAIN}/${url}`,
       method: 'DELETE',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)

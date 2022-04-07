@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
-import swal from 'sweetalert';
 import GoogleLogin from 'react-google-login';
 import "../../App.css"
 import "./Login.css";

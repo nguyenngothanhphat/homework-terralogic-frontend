@@ -22,7 +22,6 @@ export default function UserUnassigned(props) {
         ...userIds, value
       ])
     }
-    
   }
   const handleConfirmAssign = (e) => {
     e.preventDefault();

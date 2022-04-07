@@ -14,6 +14,7 @@ import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
 
 export default function Dashboard(props) {
+  const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
   const documents = useSelector(state => state.AdminReducer.documents);
@@ -56,7 +57,7 @@ export default function Dashboard(props) {
       dispatch(deleteDocumentAction(id));
     }
   }
-  const handleUploadDocument = (e ,files) => {
+  const handleUploadDocument = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append('file', files);
@@ -102,7 +103,7 @@ export default function Dashboard(props) {
             </tbody>
           </table>
         )}
-        <DragUpload showbtn={true} handleUploadDocument={handleUploadDocument}/>
+        <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>
     </main>

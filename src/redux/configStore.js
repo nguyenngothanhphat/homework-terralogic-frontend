@@ -6,12 +6,14 @@ import {ModalReducer} from './reducers/ModalReducer';
 import {AuthReducer} from './reducers/AuthReducer';
 import {AdminReducer} from './reducers/AdminReducer';
 import {UserReducer} from './reducers/UserReducer';
+import {LoadingReducer} from './reducers/LoadingReducer';
 
 const rootReducer = combineReducers({
   ModalReducer,
   AuthReducer,
   AdminReducer,
-  UserReducer
+  UserReducer,
+  LoadingReducer
 })
 
 const middlewareSaga = createMiddlewareSaga();
