@@ -32,14 +32,7 @@ export default function Login(props) {
       return;
     }
     if (isValid) {
-      /* Xử lý truyền data vào api */
       dispatch(LoginAction(values, history))
-      // swal({
-      //   title: "Congratulations! Successful login",
-      //   text: "You clicked the button!",
-      //   icon: "success",
-      //   button: "Go to admin page",
-      // });
     }
   }
   const handleLogin = (googleData) => {
@@ -89,6 +82,7 @@ export default function Login(props) {
                     onSuccess={handleLogin}
                     onFailure={handleFailure}
                     cookiePolicy={'single_host_origin'}
+                    className="google-login"
                   ></GoogleLogin>
                 </Form>
               )}

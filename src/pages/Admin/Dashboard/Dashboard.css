@@ -1,46 +1,144 @@
-table, td, th, tr {
+:root {
+  --color-primary: rgb(2, 170, 245);
+  --color-secondary: #5f5f5f;
+  --fontsize-primary: 18px;
+}
+
+table,
+td,
+th,
+tr {
   border: 1px solid #817e7e;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
+
 thead tr {
   background: #c9c7c7;
 }
-td, th {
+
+td,
+th {
   text-align: center;
 }
+
 .table-action {
   color: #000000;
 }
+.sticky a:hover .table-action{
+  color: var(--color-primary);
+}
+
 @media only screen and (min-width: 768px) {
   table {
     margin-bottom: 20px;
   }
-  table tr th, table tr td {
+
+  table tr th,
+  table tr td {
     font-size: 17px;
   }
-  td, th {
+
+  td,
+  th {
     padding: 10px;
   }
+
   .table-action {
     margin-right: 5px;
     margin-left: 5px;
   }
+  .btn-primary {
+    margin-bottom: 10px;
+  }
+  .btn-primary:not(:last-child){
+    margin-right: 10px;
+  }
 }
-@media only screen and (max-width: 767px) and (min-width: 320px){
+
+@media only screen and (max-width: 767px) and (min-width: 320px) {
   table {
     margin-bottom: 20px;
+    min-width: 810px;
+    border-collapse: unset;
+    border: none;
   }
-  table tr th, table tr td {
+
+  table tr th,
+  table tr td {
     font-size: 11px;
   }
-  td, th {
+
+  td,
+  th {
     padding: 5px;
   }
+
   .table-action {
     margin-right: 2px;
     margin-left: 2px;
+  }
+
+  .button-list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    font-size: 18px;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+  }
+  .btn-success{
+    margin-top: 10px;
+  }
+
+  .btn:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  .dropzone input {
+    font-size: 12px
+  }
+  .table-wrapper {
+    overflow: auto;
+  }
+
+  .sticky {
+    position: sticky;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #817e7e;
+  }
+
+  th {
+    background-color: var(--color-primary);
+  }
+
+  th.sticky {
+    background-color: var(--color-primary);
+  }
+  .th-name {
+    width: 400px;
+  }
+  .table-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    line-height: 2;
+  }
+  .main-content-wrapper{
+    justify-content: space-around;
+  }
+  .card{
+    width: 200px;
   }
 }

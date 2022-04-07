@@ -1,20 +1,14 @@
-import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./DragUpload.css";
 
 export default function DragUpload(props) {
   const{showbtn} = props
-  const dispatch = useDispatch();
   const handleDrapUpload = (e) => {
     let file = e.target.files[0]
     props.setFiles(file)
   }
-  // const handleUploadDocument = (e) => {
-  //   props.handleUploadDocument(files)
-  // }
-  
   return (
     <div>
       <ToastContainer />

@@ -70,10 +70,10 @@ export default function Dashboard(props) {
     return documents.map((doc, index) => {
       return (
         <tr key={index}>
-          <td>{doc.title}</td>
+          <td className="table-title">{doc.title}</td>
           <td>{doc.updatedAt}</td>
           <td><a href="#" onClick={(e) => {openPopupAssign(e, doc)}}>Assign</a></td>
-          <td>
+          <td className="sticky">
             <a href="#" onClick={(e) => {openPopupEdit(e, doc)}}><i className="fas fa-edit table-action"></i></a>
             <a href="#" onClick={(e) => {openPopupPDF(e, doc.url)}}><i className="fas fa-eye table-action"></i></a>
             <a href="#" onClick={(e) => {deleteDocument(e, doc)}}><i className="fas fa-trash table-action"></i></a>
@@ -85,24 +85,29 @@ export default function Dashboard(props) {
   return (
     <main className="main-content">
       <Sidebar />
-      <div style={{flex: 1, marginTop: '20px'}}>
-        <button className="btn btn-primary mr-3 ml-3 mb-5" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
-        <button className="btn btn-primary mb-5" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
-        {isModeCard ? (<CardDocument documents={documents} />) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Document Name</th>
-                <th>Last Update Date</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {showDocument()}
-            </tbody>
-          </table>
-        )}
+      <div style={{flex: 1, padding:'20px 20px 0'}}>
+        <div className="button-list">
+          <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
+          <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
+        </div>
+          {isModeCard ? (<div className="main-content-wrapper"><CardDocument documents={documents} /></div>) : (
+            <div className="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th className="th-name">Document Name</th>
+                  <th>Last Update Date</th>
+                  <th></th>
+                  <th className="sticky"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {showDocument()}
+              </tbody>
+            </table>
+            </div>
+          )}
+          
         <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>

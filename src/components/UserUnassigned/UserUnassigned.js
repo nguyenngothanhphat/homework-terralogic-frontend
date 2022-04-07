@@ -25,7 +25,6 @@ export default function UserUnassigned(props) {
   }
   const handleConfirmAssign = (e) => {
     e.preventDefault();
-    console.log("UserIds", userIds);
     dispatch(assignUserForDocument(id, userIds));
   }
   const showUserUnassigned = () => {

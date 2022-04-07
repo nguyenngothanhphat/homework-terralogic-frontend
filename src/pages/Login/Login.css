@@ -117,13 +117,14 @@
     height: 50px;
   }
   .login-input-wrapper::after {
-    top: 10px;
+    top: 50%;
     left: 1px;
     width: 36px;
     height: 48px;
     padding: 9px;
     border-radius: 5px 0 0 5px;
     font-size: 20px;
+    transform: translateY(-50%);
   }
   .login-error {
     margin-bottom: 10px;
@@ -140,5 +141,11 @@
   }
   .btn-login {
     margin-bottom: 10px;
+  }
+  .login-wrapper{
+    justify-content: center;
+  }
+  .google-login{
+    width: 100%;
   }
 }
