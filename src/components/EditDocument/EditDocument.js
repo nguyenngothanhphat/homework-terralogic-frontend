@@ -31,7 +31,7 @@ export default function EditDocument(props) {
       [e.target.name]: e.target.value
     })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = (e,) => {
     e.preventDefault();
     dispatch(updateDocumentAction(values, id))
   }

@@ -9,7 +9,7 @@ import UserUnassigned from '../../../components/UserUnassigned/UserUnassigned';
 
 import "../../../App.css";
 import "./Dashboard.css";
-import { deleteDocumentAction, getAllDocumentAction } from '../../../redux/actions/AdminAction';
+import { deleteDocumentAction, getAllDocumentAction, createDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
 
@@ -56,6 +56,12 @@ export default function Dashboard(props) {
       dispatch(deleteDocumentAction(id));
     }
   }
+  const handleUploadDocument = (e ,files) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append('file', files);
+    dispatch(createDocumentAction(data));
+  }
   useEffect(() => {
     getAllDocument();
   }, [])
@@ -96,7 +102,7 @@ export default function Dashboard(props) {
             </tbody>
           </table>
         )}
-        <DragUpload showbtn={true}/>
+        <DragUpload showbtn={true} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>
     </main>

@@ -41,12 +41,10 @@ export default function Login(props) {
       //   icon: "success",
       //   button: "Go to admin page",
       // });
-      console.log(values)
     }
   }
   const handleLogin = (googleData) => {
     let token = googleData.tokenId;
-    console.log("🚀 ~ file: Login.js ~ line 45 ~ handleLogin ~ token", token)
     dispatch(loginWithGoogleAction(history, token))
   }
   const handleFailure = (result) => {
