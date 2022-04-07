@@ -47,7 +47,7 @@ export default function EditDocument(props) {
           <label>Document Description</label>
           <input type="text" name="description" className="form-control" value={values.description} onChange={handleChange} />
         </div>
-        <DragUpload />
+        <DragUpload  showbtn={false}/>
         <button onClick={(e) => {handleSubmit(e)}}>Update</button>
       </form>
     </>

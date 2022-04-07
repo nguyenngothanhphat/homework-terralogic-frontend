@@ -1,9 +1,8 @@
 import { TOKEN, USER_LOGIN } from "../../utils/constants/settingSystem"
-import { LOGIN } from "../constants/AuthConstant";
+import { LOGIN, LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 
 const initialState = {
   userLogin: {},
-  loginInfo: {}
 }
 if (localStorage.getItem(USER_LOGIN)) {
   initialState.userLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
@@ -14,7 +13,13 @@ export const AuthReducer = (state = initialState, action) => {
       const {data} = action;
       localStorage.setItem(USER_LOGIN, JSON.stringify(data.body));
       localStorage.setItem(TOKEN, data.token);
-      return {...state, userLogin: data.body}
+      return {...state, adminLogin: data.body}
+    }
+    case LOGIN_WITH_GOOGLE : {
+      const {data} = action.data;
+      localStorage.setItem(USER_LOGIN, JSON.stringify(data));
+      localStorage.setItem(TOKEN, data.token);
+      return {...state, userLogin: data}
     }
     default: {
       return {...state}

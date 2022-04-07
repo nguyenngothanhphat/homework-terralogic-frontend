@@ -11,7 +11,6 @@ import "../../../App.css";
 import "./Dashboard.css";
 import { deleteDocumentAction, getAllDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
-import { Link } from 'react-router-dom';
 
 export default function Dashboard(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +90,7 @@ export default function Dashboard(props) {
             {showDocument()}
           </tbody>
         </table>
-        <DragUpload />
+        <DragUpload showbtn={true}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>
     </main>

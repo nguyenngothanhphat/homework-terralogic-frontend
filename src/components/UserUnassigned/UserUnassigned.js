@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
 
+let arrUser = [];
 export default function UserUnassigned(props) {
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
   const dispatch = useDispatch();
@@ -12,12 +13,20 @@ export default function UserUnassigned(props) {
   const getAllUsersUnassigned = (id) => {
     dispatch(getAllUserUnassignedAction(id));
   }
+  const getCheckBoxValue = (e) => {
+    const value = e.target.value;
+    let isChecked = e.target.checked;
+    if (isChecked) {
+      arrUser.push(value)
+    }
+    console.log("arrUser", arrUser);
+  }
   const showUserUnassigned = () => {
     return usersUnassigned.map((user, index) => {
       return (
         <tr key={index}>
           <td>{user.name}</td>
-          <td><input type="checkbox" value={user.id} /></td>
+          <td><input type="checkbox" value={user._id} onChange={(e) => {getCheckBoxValue(e)}} /></td>
         </tr>
       )
     })
@@ -29,13 +38,14 @@ export default function UserUnassigned(props) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Action</th>
+            <th>Confirm</th>
           </tr>
         </thead>
         <tbody>
           {showUserUnassigned()}
         </tbody>
       </table>
+      <button className="btn btn-primary">Confirm</button>
     </div>
   )
 }

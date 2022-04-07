@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import GoogleLogin from 'react-google-login';
 import "../../App.css"
 import "./Login.css";
-import { LoginAction } from '../../redux/actions/AuthAction';
+import { LoginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
+import {USER_LOGIN} from '../../utils/constants/settingSystem';
 
 const LoginSchema = yup.object().shape({
   name:yup.string()
@@ -22,7 +24,10 @@ const LoginSchema = yup.object().shape({
 export default function Login(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const handleLogin = (e, values, isValid) => {
+  if (localStorage.getItem(USER_LOGIN)) {
+    history.goBack();
+  }
+  const handleSubmit = (e, values, isValid) => {
     e.preventDefault()
     if (!values || !values.name || !values.password) {
       return;
@@ -38,6 +43,14 @@ export default function Login(props) {
       // });
       console.log(values)
     }
+  }
+  const handleLogin = (googleData) => {
+    let token = googleData.tokenId;
+    console.log("🚀 ~ file: Login.js ~ line 45 ~ handleLogin ~ token", token)
+    dispatch(loginWithGoogleAction(history, token))
+  }
+  const handleFailure = (result) => {
+    alert(result);
   }
   return (
     <div className="container">
@@ -56,7 +69,7 @@ export default function Login(props) {
               validationSchema={LoginSchema}
             >
               {({errors, touched, values, isValid}) => (
-                <Form onSubmit={handleLogin}>
+                <Form onSubmit={handleSubmit}>
                   <div className="form-wrapper">
                     <label className="login-label">Username</label>
                     <div className="login-input-wrapper">
@@ -71,8 +84,15 @@ export default function Login(props) {
                     </div>
                     {errors.password && touched.password && <div className="login-error">{errors.password}</div>}
                   </div>
-                  <button type='submit' className="btn-login" onClick={(e) => {handleLogin(e, values, isValid)}}>Login</button>
-                  <button type="submit" className="btn-login-google">Login with Terralogic email</button>
+                  <button type='submit' className="btn-login" onClick={(e) => {handleSubmit(e, values, isValid)}}>Login</button>
+                  {/* <button type="submit" className="btn-login-google">Login with Terralogic email</button> */}
+                  <GoogleLogin
+                    clientId='21667441834-0mt5i62cnjeg5khc90uu54d0bplk2sh4.apps.googleusercontent.com'
+                    buttonText='Login with Terralogic email'
+                    onSuccess={handleLogin}
+                    onFailure={handleFailure}
+                    cookiePolicy={'single_host_origin'}
+                  ></GoogleLogin>
                 </Form>
               )}
             </Formik>
