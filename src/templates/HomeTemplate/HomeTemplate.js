@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import { Route, Redirect } from 'react-router-dom'
-import Footer from './Layout/Footer/Footer'
 import Header from './Layout/Header/Header'
 import {USER_LOGIN} from '../../utils/constants/settingSystem';
 import "../../App.css";
@@ -16,10 +15,9 @@ export default function HomeTemplate(props) {
   }
   const {Component, ...resParams} = props
   return <Route {...resParams} render={(propsRoute) => {
-    return <div className="container">
+    return <div className="container-body">
       <Header />
       <Component {...propsRoute} />
-      <Footer />
     </div>
   }} />
 }

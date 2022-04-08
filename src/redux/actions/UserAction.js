@@ -15,3 +15,12 @@ export const getAllDocumentsUserAction = () => {
     }
   }
 }
+export const changeStatusDocumentAction = () => {
+  return async (dispatch) => {
+    try {
+      
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}

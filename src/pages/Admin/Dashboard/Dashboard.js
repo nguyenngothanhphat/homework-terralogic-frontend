@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import DragUpload from '../../../components/DragUpload/DragUpload';
 import Sidebar from '../../../templates/AdminTemplate/Layout/Sidebar/Sidebar';
 import Modal from '../../../HOC/Modal/Modal';
 import PDF from '../../../components/PDF/PDF';
 import UserUnassigned from '../../../components/UserUnassigned/UserUnassigned';
-
-import "../../../App.css";
-import "./Dashboard.css";
 import { deleteDocumentAction, getAllDocumentAction, createDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
+import "../../../App.css";
+import "./Dashboard.css";
+import swal from 'sweetalert';
+import Pagination from '../../../components/Pagination/Pagination';
 
 export default function Dashboard(props) {
   const [files, setFiles] = useState(null);
@@ -52,10 +52,17 @@ export default function Dashboard(props) {
   const deleteDocument = (e, doc) => {
     e.preventDefault();
     const {_id: id, title: title} = doc;
-    let result = window.confirm(`Bạn có muốn xóa ${title} document không ?`);
-    if (result) {
-      dispatch(deleteDocumentAction(id));
-    }
+    swal({
+      title: "Are you sure?",
+      text: `Bạn có muốn xóa ${title} không ?`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        dispatch(deleteDocumentAction(id));
+      }
+    })
   }
   const handleUploadDocument = (e) => {
     e.preventDefault();
@@ -90,8 +97,17 @@ export default function Dashboard(props) {
           <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
           <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
         </div>
-          {isModeCard ? (<div className="main-content-wrapper"><CardDocument documents={documents} /></div>) : (
-            <div className="table-wrapper">
+        {isModeCard ? 
+        (<div className="main-content-wrapper">
+          <CardDocument 
+            documents={documents} 
+            openPopupAssign={openPopupAssign}   
+            openPopupEdit={openPopupEdit}
+            openPopupPDF={openPopupPDF}
+            deleteDocument={deleteDocument}
+          />
+          </div>) : (
+          <div className="table-wrapper">
             <table>
               <thead>
                 <tr>
@@ -105,9 +121,10 @@ export default function Dashboard(props) {
                 {showDocument()}
               </tbody>
             </table>
-            </div>
-          )}
-          
+            
+          </div>
+        )}
+        <Pagination />
         <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>

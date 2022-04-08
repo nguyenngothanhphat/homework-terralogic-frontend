@@ -20,10 +20,9 @@ export const LoginAction = (dataLogin, history) => {
           icon: "success",
           button: "Go to admin page",
         });
-        if (data.body.role === 9) {
-          // history.push('/admin/dashboard');
-          history.goBack();
-        }
+      }
+      if (data.body.role === 9) {
+        history.push('/admin/dashboard');
       }
     } catch (err) {
       console.log("error", err);

@@ -1,10 +1,30 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux';
+import swal from 'sweetalert';
 import "../../../../App.css"
+import { TOKEN, USER_LOGIN } from '../../../../utils/constants/settingSystem';
 import "./Header.css"
 
 export default function Header() {
+  const history = useHistory()
   const {name} = useSelector(state => state.AuthReducer.userLogin);
+  const logout = (e) => {
+    e.preventDefault();
+    swal({
+      title: "Are you sure?",
+      text: "Bạn có muốn logout ra khỏi trang admin không ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willLogout) => {
+      if (willLogout) {
+        localStorage.removeItem(USER_LOGIN);
+        localStorage.removeItem(TOKEN);
+        history.push('/login')
+      }
+    })
+  }
   const openSidebar = () => {
     document.getElementById("sidebar").classList.toggle("active");
     document.getElementById("content-button").classList.toggle("active");
@@ -29,7 +49,7 @@ export default function Header() {
             <p className="account-name">{name}</p>
           </a>
           <div className="content-account-dropdown">
-            <a href="/">Log Out</a>
+            <a href="/" onClick={(e) => logout(e)}>Log Out</a>
           </div>
         </div>
       </div>

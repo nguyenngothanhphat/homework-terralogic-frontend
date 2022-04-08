@@ -23,6 +23,7 @@ export const getAllDocumentAction = () => {
   }
 }
 export const updateDocumentAction = (dataUpdate, id) => {
+console.log("🚀 ~ file: AdminAction.js ~ line 26 ~ updateDocumentAction ~ dataUpdate", dataUpdate.values())
   return async (dispatch) => {
     try {
       const {status} = await adminServices.updateDocument(dataUpdate, id);

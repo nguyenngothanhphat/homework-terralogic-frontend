@@ -19,7 +19,7 @@ img{
   width: 100%;
   height: auto;
 }
-.container {
+.container-body {
   overflow: hidden;
   position: relative;
 }
@@ -27,7 +27,7 @@ img{
   margin: 0 auto;
 }
 @media screen and (min-width: 768px) {
-  .container {
+  .container-body {
     min-width: 1300px;
   }
   .wrapper {
@@ -35,7 +35,7 @@ img{
   }
 }
 @media screen and (max-width: 767px) {
-  .container {
+  .container-body {
     min-width: 320px;
   }
   .wrapper {

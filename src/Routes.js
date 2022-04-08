@@ -14,8 +14,9 @@ export default function Routes() {
       <LoadingComponent />
       <Switch>
         <Route exact path="/login" component={Login} />
-        <AdminTemplate exact path="/admin/dashboard" Component={Dashboard} />
         <HomeTemplate exact path="/" Component={Home} />
+        <AdminTemplate exact path="/admin/dashboard" Component={Dashboard} />
+        <AdminTemplate exact path="/admin/dashboard/:pageNumber" Component={Dashboard} />
         <HomeTemplate exact path="*" Component={PageNotFound} />
       </Switch>
     </BrowserRouter>
