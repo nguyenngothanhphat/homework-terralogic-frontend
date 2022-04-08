@@ -15,10 +15,10 @@ export const getAllDocumentsUserAction = () => {
     }
   }
 }
-export const changeStatusDocumentAction = (id) => {
+export const changeReadingStatusAction = (id) => {
   return async (dispatch) => {
     try {
-      await userServices.changeStatusDocument(id);
+      await userServices.changeReadingStatus(id);
     } catch (err) {
       console.log("error", err);
     }

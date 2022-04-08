@@ -78,7 +78,7 @@ export default function Dashboard(props) {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>
-          <td>{doc.updatedAt}</td>
+          <td>{new Date(doc.updatedAt).toLocaleDateString('en-vi', { weekday:"long", year:"numeric", month:"short"})}</td>
           <td><a href="#" onClick={(e) => {openPopupAssign(e, doc)}}>Assign</a></td>
           <td className="sticky">
             <a href="#" onClick={(e) => {openPopupEdit(e, doc)}}><i className="fas fa-edit table-action"></i></a>

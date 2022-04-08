@@ -3,8 +3,8 @@ export class UserServices extends baseService {
   getAllDocumentsUser = () => {
     return this.get(`api/user/documents`);
   }
-  changeStatusDocument = (id) => {
-    return this.get(`api/user/${id}/change-status`);
+  changeReadingStatus = (id) => {
+    return this.get(`api/user/${id}/changeReadingStatus`);
   }
 }
 

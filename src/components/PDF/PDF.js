@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import { changeStatusDocumentAction } from '../../redux/actions/UserAction';
+import { changeReadingStatusAction } from '../../redux/actions/UserAction';
 import { DOMAIN, DOMAIN_TERRA, USER_LOGIN } from '../../utils/constants/settingSystem';
 import "./PDF.css"
 
@@ -12,7 +12,7 @@ export default function PDF(props) {
   }, [])
   const changeStatus = () => {
     if(JSON.parse(localStorage.getItem(USER_LOGIN)).role === 0) {
-      dispatch(changeStatusDocumentAction(id));
+      dispatch(changeReadingStatusAction(id));
     }
   }
   return (
