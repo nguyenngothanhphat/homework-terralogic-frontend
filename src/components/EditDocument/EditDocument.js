@@ -4,6 +4,7 @@ import DragUpload from '../DragUpload/DragUpload';
 import {adminServices} from '../../services/AdminServices';
 import {updateDocumentAction} from '../../redux/actions/AdminAction';
 import "./EditDocument.css";
+import { hideLoadingAction, showLoadingAction } from '../../redux/actions/LoadingAction';
 
 const initialState = {
   title: '',
@@ -16,10 +17,12 @@ export default function EditDocument(props) {
   const { _id: id } = props.doc
   const getDocumentById = async (id) => {
     try {
+      dispatch(showLoadingAction())
       const  {data, status} = await adminServices.getAllDocumentById(id);
       if (status === 200) {
         setValues({...values, ...data.doc})
       }
+      dispatch(hideLoadingAction())
     } catch (err) {
       console.log("error", err);
     }

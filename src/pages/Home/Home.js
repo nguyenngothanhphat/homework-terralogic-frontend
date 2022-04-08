@@ -20,12 +20,12 @@ export default function Home(props) {
   const closePopup = () => {
     setIsOpen(false);
   }
-  const openPopupPDF = (e, url) =>{
+  const openPopupPDF = (e, doc) =>{
     e.preventDefault();
     setIsOpen(true);
     dispatch({
       type: "OPEN_FORM",
-      Component: <PDF url={url} />
+      Component: <PDF doc={doc} />
     })
   }
   const showAllDocumentsUser = () => {
@@ -35,7 +35,7 @@ export default function Home(props) {
           <td>{userDoc.docId.title}</td>
           <td>{userDoc.docId.updatedAt}</td>
           <td>
-            <a href="#" onClick={(e) => {openPopupPDF(e, userDoc.docId.url)}}><i className={`fas fa-eye`}></i></a>
+            <a href="#" onClick={(e) => {openPopupPDF(e, userDoc.docId)}}><i className={`fas fa-eye`}></i></a>
           </td>
           <td>{userDoc.status}</td>
         </tr>

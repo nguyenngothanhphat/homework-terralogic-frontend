@@ -30,12 +30,12 @@ export default function Dashboard(props) {
       Component: <UserUnassigned doc={doc} />
     })
   }
-  const openPopupPDF = (e, url) => {
+  const openPopupPDF = (e, doc) => {
     e.preventDefault();
     setIsOpen(true);
     dispatch({
       type: "OPEN_FORM",
-      Component: <PDF url={url} />
+      Component: <PDF doc={doc} />
     })
   }
   const openPopupEdit = (e, doc) => {
@@ -82,7 +82,7 @@ export default function Dashboard(props) {
           <td><a href="#" onClick={(e) => {openPopupAssign(e, doc)}}>Assign</a></td>
           <td className="sticky">
             <a href="#" onClick={(e) => {openPopupEdit(e, doc)}}><i className="fas fa-edit table-action"></i></a>
-            <a href="#" onClick={(e) => {openPopupPDF(e, doc.url)}}><i className="fas fa-eye table-action"></i></a>
+            <a href="#" onClick={(e) => {openPopupPDF(e, doc)}}><i className="fas fa-eye table-action"></i></a>
             <a href="#" onClick={(e) => {deleteDocument(e, doc)}}><i className="fas fa-trash table-action"></i></a>
           </td>
         </tr>

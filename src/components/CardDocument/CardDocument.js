@@ -24,7 +24,7 @@ export default function CardDocument(props) {
                 </li>
               ) : ""}
               <li>
-                <a href="/" onClick={(e) => {props.openPopupPDF(e, doc.url)}}><i className="fas fa-eye table-action"></i></a>
+                <a href="/" onClick={(e) => {props.openPopupPDF(e, doc)}}><i className="fas fa-eye table-action"></i></a>
               </li>
               {!doc.docId ? (
                 <li>
