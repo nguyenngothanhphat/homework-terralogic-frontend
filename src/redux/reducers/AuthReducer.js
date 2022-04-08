@@ -21,6 +21,9 @@ export const AuthReducer = (state = initialState, action) => {
       localStorage.setItem(TOKEN, data.token);
       return {...state, userLogin: data}
     }
+    case "CLEAR_DATA": {
+      return {...state, userLogin: {}}
+    }
     default: {
       return {...state}
     }

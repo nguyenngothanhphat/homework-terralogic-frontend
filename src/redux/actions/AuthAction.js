@@ -1,5 +1,6 @@
 import swal from 'sweetalert';
 import { authService } from "../../services/AuthService"
+import { USER_LOGIN } from '../../utils/constants/settingSystem';
 import { LOGIN , LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 
@@ -14,16 +15,16 @@ export const LoginAction = (dataLogin, history) => {
           data
         })
         dispatch(hideLoadingAction())
-        swal({
-          title: "Congratulations! Successful login",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Go to admin page",
-        });
+        history.push('/admin/dashboard')
+        // swal({
+        //   title: "Congratulations! Successful login",
+        //   text: "You clicked the button!",
+        //   icon: "success",
+        //   button: "Go to admin page",
+        // });
+        
       }
-      if (data.body.role === 9) {
-        history.push('/admin/dashboard');
-      }
+      
     } catch (err) {
       console.log("error", err);
     }
@@ -44,4 +45,10 @@ export const loginWithGoogleAction = (history, token) => {
       console.log("error", err)
     }
   }
+}
+export const clearDataAction = () => {
+  let action = {
+    type: "CLEAR_DATA"
+  }
+  return action;
 }

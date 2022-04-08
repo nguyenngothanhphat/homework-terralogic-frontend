@@ -33,6 +33,7 @@ export default function Login(props) {
     }
     if (isValid) {
       dispatch(LoginAction(values, history))
+      // history.push('/admin/dashboard')
     }
   }
   const handleLogin = (googleData) => {

@@ -1,13 +1,15 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import swal from 'sweetalert';
 import "../../../../App.css"
 import { TOKEN, USER_LOGIN } from '../../../../utils/constants/settingSystem';
 import "./Header.css"
+import {clearDataAction} from '../../../../redux/actions/AuthAction';
 
 export default function Header() {
   const history = useHistory()
+  const dispatch = useDispatch();
   const {name} = useSelector(state => state.AuthReducer.userLogin);
   const logout = (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ export default function Header() {
       if (willLogout) {
         localStorage.removeItem(USER_LOGIN);
         localStorage.removeItem(TOKEN);
+        dispatch(clearDataAction())
         history.push('/login')
       }
     })
