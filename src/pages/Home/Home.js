@@ -32,10 +32,10 @@ export default function Home(props) {
     return userDocuments.map((userDoc, index) => {
       return (
         <tr key={index}>
-          <td>{userDoc.docId.title}</td>
-          <td>{userDoc.docId.updatedAt}</td>
+          <td>{userDoc.title}</td>
+          <td>{new Date(userDoc.createdAt).toLocaleDateString('en-vi', { day: "numeric", year:"numeric", month:"short"})}</td>
           <td>
-            <a href="#" onClick={(e) => {openPopupPDF(e, userDoc.docId)}}><i className={`fas fa-eye`}></i></a>
+            <a href="#" onClick={(e) => {openPopupPDF(e, userDoc)}}><i className={`fas fa-eye`}></i></a>
           </td>
           <td>{userDoc.status}</td>
         </tr>
@@ -48,7 +48,7 @@ export default function Home(props) {
         <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
         <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
       </div>
-      {isModeCard ? (<div className="main-content-wrapper"><CardDocument documents={userDocuments} /></div>) : (
+      {isModeCard ? (<div className="main-content-wrapper"><CardDocument documents={userDocuments} openPopupPDF={openPopupPDF} /></div>) : (
         <table>
           <thead>
             <tr>

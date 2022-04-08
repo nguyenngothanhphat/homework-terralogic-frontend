@@ -6,6 +6,9 @@ export class UserServices extends baseService {
   changeReadingStatus = (id) => {
     return this.get(`api/user/${id}/changeReadingStatus`);
   }
+  changeCompletedStatus = (id) => {
+    return this.get(`api/user/${id}/changeCompletedStatus`)
+  }
 }
 
 export const userServices = new UserServices();

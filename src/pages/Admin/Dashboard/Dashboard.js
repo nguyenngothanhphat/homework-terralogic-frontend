@@ -17,7 +17,7 @@ export default function Dashboard(props) {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
-  const documents = useSelector(state => state.AdminReducer.documents);
+  const documents = useSelector(state => state.AdminReducer.documents.docs);
   const dispatch = useDispatch();
   const closePopup = () => {
     setIsOpen(false);
@@ -61,6 +61,8 @@ export default function Dashboard(props) {
     }).then((willDelete) => {
       if (willDelete) {
         dispatch(deleteDocumentAction(id));
+      } else {
+        swal("Your imaginary file is safe!");
       }
     })
   }
@@ -74,11 +76,11 @@ export default function Dashboard(props) {
     getAllDocument();
   }, [])
   const showDocument = () => {
-    return documents.map((doc, index) => {
+    return documents?.map((doc, index) => {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>
-          <td>{new Date(doc.updatedAt).toLocaleDateString('en-vi', { weekday:"long", year:"numeric", month:"short"})}</td>
+          <td>{new Date(doc.updatedAt).toLocaleDateString('en-vi', { day: "numeric", year:"numeric", month:"short"})}</td>
           <td><a href="#" onClick={(e) => {openPopupAssign(e, doc)}}>Assign</a></td>
           <td className="sticky">
             <a href="#" onClick={(e) => {openPopupEdit(e, doc)}}><i className="fas fa-edit table-action"></i></a>

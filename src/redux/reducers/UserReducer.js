@@ -6,7 +6,7 @@ const initialState = {
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_DOCUMENT_USER : {
-      return {...state, userDocuments: action.data.confirms}
+      return {...state, userDocuments: action.data.docConfirms}
     }
     default: {
       return {...state}

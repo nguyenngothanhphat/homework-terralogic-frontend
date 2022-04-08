@@ -10,6 +10,7 @@ export const getAllDocumentAction = () => {
     try {
       dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllDocument();
+      console.log("🚀 ~ file: AdminAction.js ~ line 13 ~ return ~ data", data)
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT,
@@ -66,7 +67,7 @@ export const deleteDocumentAction = (id) => {
   return async (dispatch) => {
     try {
       await adminServices.deleteDocument(id);
-      window.location.reload()
+      window.location.reload();
     } catch (err) {
       console.log("error", err);
     }

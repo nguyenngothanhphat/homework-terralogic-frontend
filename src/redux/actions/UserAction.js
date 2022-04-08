@@ -24,3 +24,13 @@ export const changeReadingStatusAction = (id) => {
     }
   }
 }
+export const changeCompletedStatusAction = (id) => {
+  return async (dispatch) => {
+    try {
+      await userServices.changeCompletedStatus(id);
+      window.location.reload();
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
