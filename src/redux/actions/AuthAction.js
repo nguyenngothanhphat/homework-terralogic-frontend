@@ -4,25 +4,24 @@ import { USER_LOGIN } from '../../utils/constants/settingSystem';
 import { LOGIN , LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 
-export const LoginAction = (dataLogin, history) => {
+export const loginAction = (dataLogin, history) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction())
+      // dispatch(showLoadingAction())
       const {data, status} = await authService.login(dataLogin);
       if (status === 200) {
         dispatch({
           type: LOGIN,
           data
         })
-        dispatch(hideLoadingAction())
-        history.push('/admin/dashboard')
+        // dispatch(hideLoadingAction())
+        history.push('/admin/dashboard'); 
         // swal({
         //   title: "Congratulations! Successful login",
         //   text: "You clicked the button!",
         //   icon: "success",
         //   button: "Go to admin page",
-        // });
-        
+        // });      
       }
       
     } catch (err) {

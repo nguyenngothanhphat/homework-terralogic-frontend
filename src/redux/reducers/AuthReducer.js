@@ -13,7 +13,7 @@ export const AuthReducer = (state = initialState, action) => {
       const {data} = action;
       localStorage.setItem(USER_LOGIN, JSON.stringify(data.body));
       localStorage.setItem(TOKEN, data.token);
-      return {...state, adminLogin: data.body}
+      return {...state, userLogin: data.body}
     }
     case LOGIN_WITH_GOOGLE : {
       const {data} = action.data;

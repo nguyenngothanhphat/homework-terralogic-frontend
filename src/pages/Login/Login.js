@@ -6,8 +6,9 @@ import * as yup from 'yup';
 import GoogleLogin from 'react-google-login';
 import "../../App.css"
 import "./Login.css";
-import { LoginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
+import { loginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
 import {USER_LOGIN} from '../../utils/constants/settingSystem';
+import { authService } from '../../services/AuthService';
 
 const LoginSchema = yup.object().shape({
   name:yup.string()
@@ -26,19 +27,40 @@ export default function Login(props) {
   if (localStorage.getItem(USER_LOGIN)) {
     history.goBack();
   }
+  const roleBasedRedirect  = (res) => {
+    if (res.body.role === 9) {
+      history.push('/admin/dashboard');
+    } else {
+      history.push('/');
+    }
+  }
+  const test =  async (values) => {
+    try {
+      const {data, status} = await authService.login(values);
+      if (status === 200) {
+        dispatch({
+          type: "LOGIN",
+          data
+        })
+      }
+    } catch (err) {
+      console.log("err", err);
+    }
+    history.push('/admin/dashboard');
+  }
   const handleSubmit = (e, values, isValid) => {
     e.preventDefault()
     if (!values || !values.name || !values.password) {
       return;
     }
     if (isValid) {
-      dispatch(LoginAction(values, history))
-      // history.push('/admin/dashboard')
+      dispatch(loginAction(values, history)) 
+      // test(values);
     }
   }
   const handleLogin = (googleData) => {
     let token = googleData.tokenId;
-    console.log("🚀 ~ file: Login.js ~ line 40 ~ handleLogin ~ token", token)
+    // console.log("🚀 ~ file: Login.js ~ line 40 ~ handleLogin ~ token", token)
     dispatch(loginWithGoogleAction(history, token))
   }
   const handleFailure = (result) => {
@@ -77,7 +99,6 @@ export default function Login(props) {
                     {errors.password && touched.password && <div className="login-error">{errors.password}</div>}
                   </div>
                   <button type='submit' className="btn-login" onClick={(e) => {handleSubmit(e, values, isValid)}}>Login</button>
-                  {/* <button type="submit" className="btn-login-google">Login with Terralogic email</button> */}
                   <GoogleLogin
                     clientId='21667441834-0mt5i62cnjeg5khc90uu54d0bplk2sh4.apps.googleusercontent.com'
                     buttonText='Login with Terralogic email'

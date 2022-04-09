@@ -23,7 +23,7 @@ export default function PDF(props) {
   }
   return (
     <>
-      <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
+      <iframe id="iframe1" src={`${DOMAIN}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
       {status && status !== 'Completed' ? (<button className="btn btn-success" onClick={(e) => {changeCompletedStatus(e)}}>Sign</button>) : ""}
     </>
   )

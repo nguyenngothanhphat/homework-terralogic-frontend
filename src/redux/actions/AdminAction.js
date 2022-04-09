@@ -10,7 +10,6 @@ export const getAllDocumentAction = () => {
     try {
       dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllDocument();
-      console.log("🚀 ~ file: AdminAction.js ~ line 13 ~ return ~ data", data)
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT,
@@ -24,7 +23,6 @@ export const getAllDocumentAction = () => {
   }
 }
 export const updateDocumentAction = (dataUpdate, id) => {
-console.log("🚀 ~ file: AdminAction.js ~ line 26 ~ updateDocumentAction ~ dataUpdate", dataUpdate.values())
   return async (dispatch) => {
     try {
       await adminServices.updateDocument(dataUpdate, id);

@@ -17,8 +17,23 @@ export default function Dashboard(props) {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
-  const documents = useSelector(state => state.AdminReducer.documents.docs);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [docsPerPage, setDocsPerPage] = useState(5);
+  const documents = useSelector(state => state.AdminReducer.documents);
+  console.log("🚀 ~ file: Dashboard.js ~ line 23 ~ Dashboard ~ documents", documents)
   const dispatch = useDispatch();
+
+  // Get current document
+  // const indexOfLastDoc = currentPage * docsPerPage;
+  // const indexOfFirstDoc = indexOfLastDoc - docsPerPage;
+  // const currentDocs = documents.slice(indexOfFirstDoc, indexOfLastDoc);
+  // const pageNumber = [];
+  // for (let i = 1; i <= Math.ceil(documents.length / docsPerPage); i++) {
+  //   pageNumber.push(i);
+  // }
+  useEffect(() => {
+    getAllDocument();
+  }, [])
   const closePopup = () => {
     setIsOpen(false);
   }
@@ -72,11 +87,8 @@ export default function Dashboard(props) {
     data.append('file', files);
     dispatch(createDocumentAction(data));
   }
-  useEffect(() => {
-    getAllDocument();
-  }, [])
   const showDocument = () => {
-    return documents?.map((doc, index) => {
+    return documents.map((doc, index) => {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>
@@ -123,10 +135,9 @@ export default function Dashboard(props) {
                 {showDocument()}
               </tbody>
             </table>
-            
           </div>
         )}
-        <Pagination />
+        {/* <Pagination pageNumber={pageNumber} /> */}
         <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>
