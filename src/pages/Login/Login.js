@@ -27,27 +27,6 @@ export default function Login(props) {
   if (localStorage.getItem(USER_LOGIN)) {
     history.goBack();
   }
-  const roleBasedRedirect  = (res) => {
-    if (res.body.role === 9) {
-      history.push('/admin/dashboard');
-    } else {
-      history.push('/');
-    }
-  }
-  const test =  async (values) => {
-    try {
-      const {data, status} = await authService.login(values);
-      if (status === 200) {
-        dispatch({
-          type: "LOGIN",
-          data
-        })
-      }
-    } catch (err) {
-      console.log("err", err);
-    }
-    history.push('/admin/dashboard');
-  }
   const handleSubmit = (e, values, isValid) => {
     e.preventDefault()
     if (!values || !values.name || !values.password) {
@@ -55,7 +34,6 @@ export default function Login(props) {
     }
     if (isValid) {
       dispatch(loginAction(values, history)) 
-      // test(values);
     }
   }
   const handleLogin = (googleData) => {
