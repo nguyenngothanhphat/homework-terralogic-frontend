@@ -2,10 +2,10 @@ import React from 'react';
 import {useHistory} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux';
 import swal from 'sweetalert';
-import "../../../../App.css"
 import { TOKEN, USER_LOGIN } from '../../../../utils/constants/settingSystem';
-import "./Header.css"
 import {clearDataAction} from '../../../../redux/actions/AuthAction';
+import "../../../../App.css";
+import "./Header.css";
 
 export default function Header() {
   const history = useHistory()
@@ -36,7 +36,7 @@ export default function Header() {
     <header>
       <div className="header-logo-wrapper">
         <a href="/admin/dashboard" className="header-logo">
-          <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" width="" height="" />
+          <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" />
         </a>
       </div>
       <div className="header-content">
@@ -47,7 +47,7 @@ export default function Header() {
         <div className="content-account-wrapper">
           <a href="#" className="content-account">
             <figure className="account-image">
-              <img src="https://picsum.photos/50" alt="{name}" width="" height="" />
+              <img src="https://picsum.photos/50" alt="{name}" />
             </figure>
             <p className="account-name">{name}</p>
           </a>
