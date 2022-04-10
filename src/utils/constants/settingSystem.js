@@ -1,5 +1,6 @@
 export const DOMAIN = 'https://homeworkterralogic.herokuapp.com';
 export const DOMAIN_TERRA = 'https://chaupham.ngrok.io';
+export const CLIENT_ID = '21667441834-0mt5i62cnjeg5khc90uu54d0bplk2sh4.apps.googleusercontent.com';
 export const TOKEN = 'ACCESSTOKEN';
 export const USER_LOGIN = 'USER_LOGIN';
 export const STATUS_CODE = {

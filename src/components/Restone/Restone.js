@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Restone(props) {
   const showListDeleted = () => {
-    return props.docs.map((doc, index) => {
+    return props.docs.filter(doc => doc.deleted).map((doc, index) => {
       return (
         <tr key={index}>
           <td>{doc.title}</td>

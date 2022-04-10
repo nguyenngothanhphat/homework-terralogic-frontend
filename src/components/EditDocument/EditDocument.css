@@ -1,9 +1,7 @@
 form{
   position: relative;
 }
-/* button{
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-} */
+.btn-update {
+  display: block;
+  margin: 10px auto 0;
+}

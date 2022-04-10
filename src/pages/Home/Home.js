@@ -7,7 +7,6 @@ import PDF from '../../components/PDF/PDF';
 import Modal from '../../HOC/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
 import "../../App.css";
-import "./Home.css";
 
 export default function Home(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +60,6 @@ export default function Home(props) {
               <th>Last Update Date</th>
               <th></th>
               <th></th>
-              <th className="sticky"></th>
             </tr>
           </thead>
           <tbody>

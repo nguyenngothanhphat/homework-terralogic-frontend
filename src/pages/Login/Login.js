@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import GoogleLogin from 'react-google-login';
 import { loginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
-import {USER_LOGIN} from '../../utils/constants/settingSystem';
+import {CLIENT_ID, USER_LOGIN} from '../../utils/constants/settingSystem';
 import "../../App.css"
 import "./Login.css";
 
@@ -47,7 +47,7 @@ export default function Login(props) {
       <div className="wrapper">
         <div className="login-wrapper" style={{height: window.innerHeight}}>
           <div className="login-image">
-            <img src={require('../../assets/img/login-image.png')} alt="login-image" />
+            <img src={require('../../assets/img/login-image.png')} alt="login" />
           </div>
           <div className="login-form">
             <h2 className="login-title">Login Form</h2>
@@ -76,7 +76,7 @@ export default function Login(props) {
                   </div>
                   <button type='submit' className="btn-login" onClick={(e) => {handleSubmit(e, values, isValid)}}>Login</button>
                   <GoogleLogin
-                    clientId='21667441834-0mt5i62cnjeg5khc90uu54d0bplk2sh4.apps.googleusercontent.com'
+                    clientId={CLIENT_ID}
                     buttonText='Login with Terralogic email'
                     onSuccess={handleLogin}
                     onFailure={handleFailure}

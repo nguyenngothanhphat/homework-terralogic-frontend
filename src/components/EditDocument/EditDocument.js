@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import DragUpload from '../DragUpload/DragUpload';
 import {adminServices} from '../../services/AdminServices';
 import {updateDocumentAction} from '../../redux/actions/AdminAction';
-import "./EditDocument.css";
 import { hideLoadingAction, showLoadingAction } from '../../redux/actions/LoadingAction';
+import "./EditDocument.css";
 
 const initialState = {
   title: '',
@@ -57,7 +57,7 @@ export default function EditDocument(props) {
           <input type="text" name="description" className="form-control" value={values.description} onChange={handleChange} />
         </div>
         <DragUpload  showbtn={false} files={files} setFiles={setFiles} handleUploadDocument={handleUpdateDocument}  />
-        <button className="btn btn-success"onClick={(e) => {handleUpdateDocument(e)}}>Update</button>
+        <button className="btn btn-success btn-update"onClick={(e) => {handleUpdateDocument(e)}}>Update</button>
       </form>
     </>
   )
