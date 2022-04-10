@@ -1,5 +1,5 @@
 import { TOKEN, USER_LOGIN } from "../../utils/constants/settingSystem"
-import { LOGIN, LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
+import { CLEAR_DATA, LOGIN, LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 
 const initialState = {
   userLogin: {},
@@ -21,7 +21,7 @@ export const AuthReducer = (state = initialState, action) => {
       localStorage.setItem(TOKEN, data.token);
       return {...state, userLogin: data}
     }
-    case "CLEAR_DATA": {
+    case CLEAR_DATA: {
       return {...state, userLogin: {}}
     }
     default: {
