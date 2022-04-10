@@ -10,6 +10,10 @@
   outline: none;
   transition: border .24s ease-in-out
 }
+.btn-upload {
+  display: block;
+  margin: 10px auto;
+}
 @media only screen and (min-width: 768px) {
   .dropzone {
     padding: 20px;

@@ -6,9 +6,7 @@ const initialState = {
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_DOCUMENT_USER : {
-      state.userDocuments = {...action.data}
-      console.log(state.userDocuments)
-      return {...state}
+      return {...state, userDocuments: {...action.data}}
     }
     default: {
       return {...state}

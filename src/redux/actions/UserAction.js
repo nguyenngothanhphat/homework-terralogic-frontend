@@ -4,7 +4,6 @@ export const getAllDocumentsUserAction = () => {
   return async (dispatch) => {
     try {
       const {data, status} = await userServices.getAllDocumentsUser();
-      console.log("🚀 ~ file: UserAction.js ~ line 7 ~ return ~ data", data)
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT_USER,

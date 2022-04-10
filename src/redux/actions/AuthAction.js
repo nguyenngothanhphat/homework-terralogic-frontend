@@ -1,13 +1,12 @@
 import swal from 'sweetalert';
 import { authService } from "../../services/AuthService"
-import { USER_LOGIN } from '../../utils/constants/settingSystem';
-import { LOGIN , LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
+import { CLEAR_DATA, LOGIN , LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 
 export const loginAction = (dataLogin, history) => {
   return async (dispatch) => {
     try {
-      // dispatch(showLoadingAction())
+      dispatch(showLoadingAction())
       const {data, status} = await authService.login(dataLogin);
       if (status === 200) {
         dispatch({
@@ -55,7 +54,7 @@ export const loginWithGoogleAction = (history, token) => {
 }
 export const clearDataAction = () => {
   let action = {
-    type: "CLEAR_DATA"
+    type: CLEAR_DATA
   }
   return action;
 }

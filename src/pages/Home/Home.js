@@ -4,9 +4,10 @@ import {useParams} from 'react-router-dom';
 import {getAllDocumentsUserAction} from '../../redux/actions/UserAction';
 import CardDocument from '../../components/CardDocument/CardDocument';
 import PDF from '../../components/PDF/PDF';
-import "../../App.css"
 import Modal from '../../HOC/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
+import "../../App.css";
+import "./Home.css";
 
 export default function Home(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Home(props) {
   }
   return (
     <div className="wrapper">
-      <div className="button-list">
+      <div className="button-list" style={{marginTop: '20px'}}>
         <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
         <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
       </div>
@@ -60,6 +61,7 @@ export default function Home(props) {
               <th>Last Update Date</th>
               <th></th>
               <th></th>
+              <th className="sticky"></th>
             </tr>
           </thead>
           <tbody>
