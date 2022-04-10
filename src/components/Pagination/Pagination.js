@@ -9,7 +9,7 @@ export default function Pagination(props) {
     <div className="pagination">
       {[...Array(pages).keys()]?.map((p, index) => {
         return (
-          <NavLink activeClassName="active" to={JSON.parse(localStorage.getItem(USER_LOGIN)).role === 0 ? `/${p + 1}` : `/admin/dashboard/${p + 1}`} key={index}>{p + 1}</NavLink>
+          <NavLink activeClassName="actived" to={JSON.parse(localStorage.getItem(USER_LOGIN)).role === 0 ? `/${p + 1}` : `/admin/dashboard/${p + 1}`} key={index}>{p + 1}</NavLink>
         )
       })}
     </div>
