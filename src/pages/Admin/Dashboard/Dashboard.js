@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useParams} from 'react-router-dom';
+import swal from 'sweetalert';
 import DragUpload from '../../../components/DragUpload/DragUpload';
 import Sidebar from '../../../templates/AdminTemplate/Layout/Sidebar/Sidebar';
 import Modal from '../../../HOC/Modal/Modal';
@@ -9,13 +10,12 @@ import UserUnassigned from '../../../components/UserUnassigned/UserUnassigned';
 import { deleteDocumentAction, getAllDocumentAction, createDocumentAction } from '../../../redux/actions/AdminAction';
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
-import "../../../App.css";
-import "./Dashboard.css";
-import swal from 'sweetalert';
 import Pagination from '../../../components/Pagination/Pagination';
 import Restone from '../../../components/Restone/Restone';
+import "../../../App.css";
+import "./Dashboard.css";
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
@@ -88,7 +88,7 @@ export default function Dashboard(props) {
     dispatch(createDocumentAction(data));
   }
   const showDocument = () => {
-    return documents?.map((doc, index) => {
+    return documents?.filter(doc => !doc.deleted).map((doc, index) => {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>
