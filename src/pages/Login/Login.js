@@ -4,11 +4,10 @@ import { useDispatch } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import GoogleLogin from 'react-google-login';
-import "../../App.css"
-import "./Login.css";
 import { loginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
 import {USER_LOGIN} from '../../utils/constants/settingSystem';
-import { authService } from '../../services/AuthService';
+import "../../App.css"
+import "./Login.css";
 
 const LoginSchema = yup.object().shape({
   name:yup.string()
@@ -38,7 +37,6 @@ export default function Login(props) {
   }
   const handleLogin = (googleData) => {
     let token = googleData.tokenId;
-    // console.log("🚀 ~ file: Login.js ~ line 40 ~ handleLogin ~ token", token)
     dispatch(loginWithGoogleAction(history, token))
   }
   const handleFailure = (result) => {
@@ -49,7 +47,7 @@ export default function Login(props) {
       <div className="wrapper">
         <div className="login-wrapper" style={{height: window.innerHeight}}>
           <div className="login-image">
-            <img src="../images/login-image.png" alt="login-image" />
+            <img src={require('../../assets/img/login-image.png')} alt="login-image" />
           </div>
           <div className="login-form">
             <h2 className="login-title">Login Form</h2>

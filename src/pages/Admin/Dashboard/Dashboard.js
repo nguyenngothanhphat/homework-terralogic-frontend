@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useParams} from 'react-router-dom';
 import DragUpload from '../../../components/DragUpload/DragUpload';
 import Sidebar from '../../../templates/AdminTemplate/Layout/Sidebar/Sidebar';
 import Modal from '../../../HOC/Modal/Modal';
@@ -12,28 +13,19 @@ import "../../../App.css";
 import "./Dashboard.css";
 import swal from 'sweetalert';
 import Pagination from '../../../components/Pagination/Pagination';
+import Restone from '../../../components/Restone/Restone';
 
 export default function Dashboard(props) {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [docsPerPage, setDocsPerPage] = useState(5);
-  const documents = useSelector(state => state.AdminReducer.documents);
-  console.log("🚀 ~ file: Dashboard.js ~ line 23 ~ Dashboard ~ documents", documents)
+  const documents = useSelector(state => state.AdminReducer.documents.docs);
+  const totalPages = useSelector(state => state.AdminReducer.documents?.pages);
+  const {pageNumber} = useParams();
   const dispatch = useDispatch();
-
-  // Get current document
-  // const indexOfLastDoc = currentPage * docsPerPage;
-  // const indexOfFirstDoc = indexOfLastDoc - docsPerPage;
-  // const currentDocs = documents.slice(indexOfFirstDoc, indexOfLastDoc);
-  // const pageNumber = [];
-  // for (let i = 1; i <= Math.ceil(documents.length / docsPerPage); i++) {
-  //   pageNumber.push(i);
-  // }
   useEffect(() => {
-    getAllDocument();
-  }, [])
+    getAllDocument(pageNumber);
+  }, [dispatch, pageNumber])
   const closePopup = () => {
     setIsOpen(false);
   }
@@ -61,15 +53,23 @@ export default function Dashboard(props) {
       Component: <EditDocument doc={doc} />
     })
   }
-  const getAllDocument = () => {
-    dispatch(getAllDocumentAction());
+  const openPopupRestone = (e) => {
+    e.preventDefault();
+    setIsOpen(true);
+    dispatch({
+      type: "OPEN_FORM",
+      Component: <Restone docs={documents} />
+    })
+  }
+  const getAllDocument = (pageNumber) => {
+    dispatch(getAllDocumentAction(pageNumber));
   }
   const deleteDocument = (e, doc) => {
     e.preventDefault();
     const {_id: id, title: title} = doc;
     swal({
       title: "Are you sure?",
-      text: `Bạn có muốn xóa ${title} không ?`,
+      text: `Do you want to delete the ${title} ?`,
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -88,7 +88,7 @@ export default function Dashboard(props) {
     dispatch(createDocumentAction(data));
   }
   const showDocument = () => {
-    return documents.map((doc, index) => {
+    return documents?.map((doc, index) => {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>
@@ -110,6 +110,7 @@ export default function Dashboard(props) {
         <div className="button-list">
           <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
           <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
+          <button className="btn btn-primary" onClick={(e) => openPopupRestone(e)}><i className="fas fa-trash-restore"></i></button>
         </div>
         {isModeCard ? 
         (<div className="main-content-wrapper">
@@ -137,7 +138,7 @@ export default function Dashboard(props) {
             </table>
           </div>
         )}
-        {/* <Pagination pageNumber={pageNumber} /> */}
+        <Pagination pages={totalPages} />
         <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>

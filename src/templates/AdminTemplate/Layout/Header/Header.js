@@ -15,7 +15,7 @@ export default function Header() {
     e.preventDefault();
     swal({
       title: "Are you sure?",
-      text: "Bạn có muốn logout ra khỏi trang admin không ?",
+      text: "Do you want to logout from the admin page?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -36,7 +36,7 @@ export default function Header() {
     <header>
       <div className="header-logo-wrapper">
         <a href="/admin/dashboard" className="header-logo">
-          <img src="../images/header-logo.svg" alt="TERRALOGIC" width="" height="" />
+          <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" width="" height="" />
         </a>
       </div>
       <div className="header-content">

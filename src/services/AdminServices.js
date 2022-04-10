@@ -1,8 +1,8 @@
 import {baseService} from './baseService';
 
 export class AdminServices extends baseService {
-  getAllDocument = () => {
-    return this.get(`api/admin/documents`);
+  getAllDocument = (pageNumber) => {
+    return this.get(`api/admin/documents?pageNumber=${pageNumber}`);
   }
   getAllDocumentById = (id) => {
     return this.get(`api/admin/documents/${id}`);

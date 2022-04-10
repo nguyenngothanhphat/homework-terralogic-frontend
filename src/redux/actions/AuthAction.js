@@ -14,18 +14,26 @@ export const loginAction = (dataLogin, history) => {
           type: LOGIN,
           data
         })
-        // dispatch(hideLoadingAction())
-        history.push('/admin/dashboard'); 
-        // swal({
-        //   title: "Congratulations! Successful login",
-        //   text: "You clicked the button!",
-        //   icon: "success",
-        //   button: "Go to admin page",
-        // });      
-      }
-      
+        dispatch(hideLoadingAction())
+        swal({
+          title: "Congratulations! Successful login",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Go to admin page",
+        }).then((accept) => {
+          if (accept) {
+            history.push('/admin/dashboard'); 
+          }
+        })
+      } 
     } catch (err) {
       console.log("error", err);
+      swal({
+        title: "Login failed",
+        text: "Username or password is incorrect!",
+        icon: "error",
+        button: "Re-login",
+      });
     }
   }
 }

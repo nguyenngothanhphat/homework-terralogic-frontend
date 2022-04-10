@@ -5,10 +5,10 @@ const initialState = {
   usersUnassigned: []
 }
 export const AdminReducer = (state = initialState, action) => {
-  console.log("action", action)
   switch (action.type) {
     case GET_ALL_DOCUMENT: {
-      return {...state, documents: action.data.docs}
+      state.documents = {...action.data}
+      return {...state}
     }
     case GET_ALL_USER_UNASSIGNED : {
       return {...state, usersUnassigned: action.data}

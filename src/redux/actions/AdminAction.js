@@ -5,11 +5,12 @@ import {
   GET_ALL_USER_UNASSIGNED
 } from "../constants/AdminConstant";
 
-export const getAllDocumentAction = () => {
+export const getAllDocumentAction = (pageNumber) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction())
-      const {data, status} = await adminServices.getAllDocument();
+      const {data, status} = await adminServices.getAllDocument(pageNumber);
+      console.log("🚀 ~ file: AdminAction.js ~ line 13 ~ return ~ data", data)
       if (status === 200) {
         dispatch({
           type: GET_ALL_DOCUMENT,

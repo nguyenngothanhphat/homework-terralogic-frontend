@@ -1,21 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import {getAllDocumentsUserAction} from '../../redux/actions/UserAction';
 import CardDocument from '../../components/CardDocument/CardDocument';
 import PDF from '../../components/PDF/PDF';
 import "../../App.css"
 import Modal from '../../HOC/Modal/Modal';
+import Pagination from '../../components/Pagination/Pagination';
 
 export default function Home(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
-  const userDocuments = useSelector(state => state.UserReducer.userDocuments);
+  const userDocuments = useSelector(state => state.UserReducer.userDocuments.docConfirms);
+  const totalPages = useSelector(state => state.UserReducer.userDocuments.pages);
   const dispatch = useDispatch();
+  const {pageNumber} = useParams();
   useEffect(() => {
-    getAllDocumentsUser();
-  }, [])
-  const getAllDocumentsUser = () => {
-    dispatch(getAllDocumentsUserAction());
+    getAllDocumentsUser(pageNumber);
+  }, [dispatch, pageNumber])
+  const getAllDocumentsUser = (pageNumber) => {
+    dispatch(getAllDocumentsUserAction(pageNumber));
   }
   const closePopup = () => {
     setIsOpen(false);
@@ -29,7 +33,7 @@ export default function Home(props) {
     })
   }
   const showAllDocumentsUser = () => {
-    return userDocuments.map((userDoc, index) => {
+    return userDocuments && userDocuments.map((userDoc, index) => {
       return (
         <tr key={index}>
           <td>{userDoc.title}</td>
@@ -63,6 +67,7 @@ export default function Home(props) {
           </tbody>
         </table>
       )}
+      <Pagination pages={totalPages} />
       <Modal isOpen={isOpen} closePopup={closePopup} />
     </div>
   )

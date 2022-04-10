@@ -8,7 +8,7 @@ export default function LoadingComponent(props) {
     <>
       {isLoading ? (
         <div className='bg-loading'>
-          <img src="../images/loading.gif" alt="loading gif" />
+          <img src={require('../../assets/img/loading.gif')} alt="loading" />
         </div>
       ) : ''}
     </>
