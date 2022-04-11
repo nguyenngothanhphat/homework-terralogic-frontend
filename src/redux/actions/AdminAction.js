@@ -4,13 +4,14 @@ import {
   GET_ALL_DOCUMENT, 
   GET_ALL_USER_UNASSIGNED
 } from "../constants/AdminConstant";
+import { STATUS_CODE } from "../../utils/constants/settingSystem";
 
 export const getAllDocumentAction = (pageNumber) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllDocument(pageNumber);
-      if (status === 200) {
+      if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_DOCUMENT,
           data
@@ -25,8 +26,12 @@ export const getAllDocumentAction = (pageNumber) => {
 export const updateDocumentAction = (dataUpdate, id) => {
   return async (dispatch) => {
     try {
-      await adminServices.updateDocument(dataUpdate, id);
-      window.location.reload();
+      dispatch(showLoadingAction());
+      const {status} = await adminServices.updateDocument(dataUpdate, id);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }
     } catch (err) {
       console.log("error", err);
     }
@@ -37,7 +42,7 @@ export const getAllUserUnassignedAction = (id) => {
     try {
       dispatch(showLoadingAction())
       const {data, status} = await adminServices.getAllUserUnassigned(id);
-      if (status === 200) {
+      if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_USER_UNASSIGNED,
           data
@@ -52,10 +57,12 @@ export const getAllUserUnassignedAction = (id) => {
 export const createDocumentAction = (data) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction())
-      await adminServices.createDocument(data);
-      dispatch(hideLoadingAction())
-      window.location.reload()
+      dispatch(showLoadingAction());
+      const {status} = await adminServices.createDocument(data);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }   
     } catch (err) {
       console.log("error", err);
     }
@@ -64,8 +71,12 @@ export const createDocumentAction = (data) => {
 export const deleteDocumentAction = (id) => {
   return async (dispatch) => {
     try {
-      await adminServices.deleteDocument(id);
-      window.location.reload();
+      dispatch(showLoadingAction());
+      const {status} = await adminServices.deleteDocument(id);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }
     } catch (err) {
       console.log("error", err);
     }
@@ -74,8 +85,26 @@ export const deleteDocumentAction = (id) => {
 export const assignUserForDocument = (id, data) => {
   return async (dispatch) => {
     try {
-      await adminServices.assignUserForDocument(id, data);
-      window.location.reload();
+      dispatch(showLoadingAction());
+      const {status} = await adminServices.assignUserForDocument(id, data);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const restoneDocumentAction = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(showLoadingAction());
+      const {status} = await adminServices.restoneDocument(id);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }
     } catch (err) {
       console.log("error", err);
     }

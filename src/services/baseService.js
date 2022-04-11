@@ -1,6 +1,5 @@
 import  Axios  from "axios"
 import { DOMAIN, DOMAIN_TERRA,  TOKEN } from "../utils/constants/settingSystem"
-
 export class baseService {
   get = (url) => {
     return Axios({

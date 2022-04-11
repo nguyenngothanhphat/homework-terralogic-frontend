@@ -22,5 +22,8 @@ export class AdminServices extends baseService {
   assignUserForDocument = (id, data) => {
     return this.post(`api/admin/documents/${id}/assign`, data);
   }
+  restoneDocument = (id) => {
+    return this.get(`api/admin/documents/${id}/restore`)
+  }
 }
 export const adminServices = new AdminServices();
