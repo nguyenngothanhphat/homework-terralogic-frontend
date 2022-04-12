@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/homework-terralogic-frontend/static/css/main.17d87a27.css",
+    "main.js": "/homework-terralogic-frontend/static/js/main.a080a377.js",
+    "static/js/787.2d7e49be.chunk.js": "/homework-terralogic-frontend/static/js/787.2d7e49be.chunk.js",
+    "static/media/loading.gif": "/homework-terralogic-frontend/static/media/loading.b82a9952ec1c51c3676c.gif",
+    "static/media/login-image.png": "/homework-terralogic-frontend/static/media/login-image.f90ed7beaaa423055136.png",
+    "static/media/logo.png": "/homework-terralogic-frontend/static/media/logo.091a74c594aa3b74eed3.png",
+    "index.html": "/homework-terralogic-frontend/index.html",
+    "main.17d87a27.css.map": "/homework-terralogic-frontend/static/css/main.17d87a27.css.map",
+    "main.a080a377.js.map": "/homework-terralogic-frontend/static/js/main.a080a377.js.map",
+    "787.2d7e49be.chunk.js.map": "/homework-terralogic-frontend/static/js/787.2d7e49be.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17d87a27.css",
+    "static/js/main.a080a377.js"
+  ]
+}
