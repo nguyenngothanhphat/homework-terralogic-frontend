@@ -76,7 +76,7 @@ export default function Login(props) {
                   </div>
                   <button type='submit' className="btn-login" onClick={(e) => {handleSubmit(e, values, isValid)}}>Login</button>
                   <GoogleLogin
-                    clientId={CLIENT_ID}
+                    clientId="21667441834-0mt5i62cnjeg5khc90uu54d0bplk2sh4.apps.googleusercontent.com"
                     buttonText='Login with Terralogic email'
                     onSuccess={handleLogin}
                     onFailure={handleFailure}
