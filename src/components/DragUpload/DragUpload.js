@@ -1,6 +1,4 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import "./DragUpload.css";
 
 export default function DragUpload(props) {
@@ -11,7 +9,6 @@ export default function DragUpload(props) {
   }
   return (
     <div>
-      <ToastContainer />
       <div className="dropzone">
         <input type="file" accept=".doc, .docx, .pdf" onChange={(e) => handleDrapUpload(e)} />
         <p className="dropzone-text">Click or Drag the file here to Upload a new Document</p>

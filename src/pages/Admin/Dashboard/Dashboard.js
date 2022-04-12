@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams, NavLink} from 'react-router-dom';
 import swal from 'sweetalert';
 import DragUpload from '../../../components/DragUpload/DragUpload';
 import Sidebar from '../../../templates/AdminTemplate/Layout/Sidebar/Sidebar';
@@ -11,10 +11,8 @@ import { deleteDocumentAction, getAllDocumentAction, createDocumentAction } from
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
 import Pagination from '../../../components/Pagination/Pagination';
-import Restone from '../../../components/Restore/Restore';
 import "../../../App.css";
 import "./Dashboard.css";
-import { NavLink } from 'react-router-dom';
 
 export default function Dashboard() {
   const [files, setFiles] = useState(null);

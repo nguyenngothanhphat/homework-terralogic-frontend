@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTrashDocumentsAction, restoneDocumentAction } from '../../redux/actions/AdminAction';
 
 export default function Restone(props) {
-  const trashDocuments = useSelector(state => state.AdminReducer.trashDocuments.docs);
+  const trashDocuments = useSelector(state => state.AdminReducer.trashDocuments);
   const dispatch = useDispatch();
   useEffect(() => {
     getAllTrashDocs()

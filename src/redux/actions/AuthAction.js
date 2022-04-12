@@ -26,6 +26,7 @@ export const loginAction = (dataLogin, history) => {
         })
       } 
     } catch (err) {
+      dispatch(hideLoadingAction())
       console.log("error", err);
       swal({
         title: "Login failed",

@@ -15,7 +15,8 @@ export const AdminReducer = (state = initialState, action) => {
       return {...state, usersUnassigned: action.data}
     }
     case GET_ALL_TRASH_DOCUMENT: {
-      return {...state, trashDocuments: action.data.docs}
+      state.trashDocuments = action.data.docs
+      return {...state}
     }
     default: {
       return {...state}
