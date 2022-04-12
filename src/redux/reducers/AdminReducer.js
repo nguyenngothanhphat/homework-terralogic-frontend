@@ -1,8 +1,9 @@
-import { GET_ALL_DOCUMENT, GET_ALL_USER_UNASSIGNED } from "../constants/AdminConstant";
+import { GET_ALL_DOCUMENT, GET_ALL_USER_UNASSIGNED, GET_ALL_TRASH_DOCUMENT } from "../constants/AdminConstant";
 
 const initialState = {
   documents: [],
-  usersUnassigned: []
+  usersUnassigned: [],
+  trashDocuments: []
 }
 export const AdminReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,6 +13,9 @@ export const AdminReducer = (state = initialState, action) => {
     }
     case GET_ALL_USER_UNASSIGNED : {
       return {...state, usersUnassigned: action.data}
+    }
+    case GET_ALL_TRASH_DOCUMENT: {
+      return {...state, trashDocuments: action.data.docs}
     }
     default: {
       return {...state}

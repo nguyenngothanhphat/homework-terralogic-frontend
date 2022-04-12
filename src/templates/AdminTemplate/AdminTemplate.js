@@ -5,6 +5,7 @@ import Header from './Layout/Header/Header';
 import Dashboard from '../../pages/Admin/Dashboard/Dashboard';
 import { USER_LOGIN } from '../../utils/constants/settingSystem';
 import "../../App.css"
+import Restore from '../../pages/Admin/Restore/Restore';
 
 export default function AdminTemplate(props) {
   const userLogin = useSelector(state => state.AuthReducer.userLogin);
@@ -14,12 +15,12 @@ export default function AdminTemplate(props) {
   if (userLogin.role !== 9) {
     return <Redirect to="/" />
   }
-  const {Components, ...restParams} = props;
+  const {Component, ...restParams} = props;
   return <Route {...restParams} render={(propsRoute) => {
     return (
       <div>
         <Header />
-        <Dashboard />
+        <Component {...propsRoute} />
       </div>
     )
   }} />

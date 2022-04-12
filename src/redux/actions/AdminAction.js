@@ -2,7 +2,8 @@ import { adminServices } from "../../services/AdminServices";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 import { 
   GET_ALL_DOCUMENT, 
-  GET_ALL_USER_UNASSIGNED
+  GET_ALL_USER_UNASSIGNED,
+  GET_ALL_TRASH_DOCUMENT
 } from "../constants/AdminConstant";
 import { STATUS_CODE } from "../../utils/constants/settingSystem";
 
@@ -104,6 +105,23 @@ export const restoneDocumentAction = (id) => {
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
         window.location.reload();
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  }
+}
+export const getTrashDocumentsAction = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(showLoadingAction());
+      const {data, status} = await adminServices.getTrashDocuments();
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch({
+          type: GET_ALL_TRASH_DOCUMENT,
+          data
+        })
+        dispatch(hideLoadingAction());
       }
     } catch (err) {
       console.log("error", err);

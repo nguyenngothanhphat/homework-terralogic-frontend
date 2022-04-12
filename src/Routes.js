@@ -7,6 +7,7 @@ import Dashboard from './pages/Admin/Dashboard/Dashboard';
 import HomeTemplate from './templates/HomeTemplate/HomeTemplate';
 import AdminTemplate from './templates/AdminTemplate/AdminTemplate';
 import LoadingComponent from './components/Loading/LoadingComponent';
+import Restore from './pages/Admin/Restore/Restore';
 
 export default function Routes() {
   return (
@@ -17,7 +18,9 @@ export default function Routes() {
         <HomeTemplate exact path="/" Component={Home} />
         <HomeTemplate exact path="/:pageNumber" Component={Home} />
         <AdminTemplate exact path="/admin/dashboard/:pageNumber" Component={Dashboard} />
-        <AdminTemplate exact path="/admin/dashboard" Component={Dashboard} /> 
+        <AdminTemplate exact path="/admin/dashboard" Component={Dashboard} />
+        <AdminTemplate exact path="/admin/restore" Component={Restore} />
+        <AdminTemplate exact path="/admin/restore/:pageNumber" Component={Restore} />
         <HomeTemplate exact path="*" Component={PageNotFound} />
       </Switch>
     </BrowserRouter>

@@ -32,7 +32,7 @@ export default function Header(props) {
     <header>
       <div className="header-logo-wrapper">
         <a href="/admin/dashboard" className="header-logo">
-          <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" width="" height="" />
+          <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" />
         </a>
       </div>
       <div className="header-content">
@@ -41,7 +41,7 @@ export default function Header(props) {
         <div className="content-account-wrapper">
           <a href="#" className="content-account">
             <figure className="account-image">
-              <img src={avatar} alt={name} width="" height="" />
+              <img src={avatar} alt={name} />
             </figure>
             <p className="account-name">{name}</p>
           </a>

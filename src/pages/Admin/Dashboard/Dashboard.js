@@ -11,9 +11,10 @@ import { deleteDocumentAction, getAllDocumentAction, createDocumentAction } from
 import EditDocument from '../../../components/EditDocument/EditDocument';
 import CardDocument from '../../../components/CardDocument/CardDocument';
 import Pagination from '../../../components/Pagination/Pagination';
-import Restone from '../../../components/Restone/Restone';
+import Restone from '../../../components/Restore/Restore';
 import "../../../App.css";
 import "./Dashboard.css";
+import { NavLink } from 'react-router-dom';
 
 export default function Dashboard() {
   const [files, setFiles] = useState(null);
@@ -51,14 +52,6 @@ export default function Dashboard() {
     dispatch({
       type: "OPEN_FORM",
       Component: <EditDocument doc={doc} />
-    })
-  }
-  const openPopupRestone = (e) => {
-    e.preventDefault();
-    setIsOpen(true);
-    dispatch({
-      type: "OPEN_FORM",
-      Component: <Restone docs={documents} />
     })
   }
   const getAllDocument = (pageNumber) => {
@@ -110,7 +103,7 @@ export default function Dashboard() {
         <div className="button-list">
           <button className="btn btn-primary" onClick={() => setIsModeCard(false)}><i className="fas fa-list"></i></button>
           <button className="btn btn-primary" onClick={() => setIsModeCard(true)}><i className="fas fa-id-card"></i></button>
-          <button className="btn btn-primary" onClick={(e) => openPopupRestone(e)}><i className="fas fa-trash-restore"></i></button>
+          <NavLink className="btn btn-primary" to="/admin/restore"><i className="fas fa-trash-restore"></i></NavLink>
         </div>
         {isModeCard ? 
         (<div className="main-content-wrapper">

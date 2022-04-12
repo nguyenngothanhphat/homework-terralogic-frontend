@@ -1,21 +1,27 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { restoneDocumentAction } from '../../redux/actions/AdminAction';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTrashDocumentsAction, restoneDocumentAction } from '../../redux/actions/AdminAction';
 
 export default function Restone(props) {
+  const trashDocuments = useSelector(state => state.AdminReducer.trashDocuments.docs);
   const dispatch = useDispatch();
+  useEffect(() => {
+    getAllTrashDocs()
+  }, [])
   const handleRestoneDocument = (e, id) => {
     e.preventDefault();
-    console.log("ID", id)
     dispatch(restoneDocumentAction(id));
   }
+  const getAllTrashDocs = () => {
+    dispatch(getTrashDocumentsAction());
+  }
   const showListDeleted = () => {
-    return props.docs.filter(doc => doc.deleted).map((doc, index) => {
+    return trashDocuments?.map((trashDoc, index) => {
       return (
         <tr key={index}>
-          <td>{doc.title}</td>
+          <td>{trashDoc.title}</td>
           <td>
-            <a href="#" onClick={(e) => handleRestoneDocument(e, doc._id)}><i className="fas fa-trash-restore"></i></a>
+            <a href="#" onClick={(e) => handleRestoneDocument(e, trashDoc._id)}><i className="fas fa-trash-restore"></i></a>
           </td>   
         </tr>
       )

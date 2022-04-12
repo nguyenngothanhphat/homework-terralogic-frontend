@@ -47,7 +47,7 @@ export default function Header() {
         <div className="content-account-wrapper">
           <a href="#" className="content-account">
             <figure className="account-image">
-              <img src="https://picsum.photos/50" alt="{name}" />
+              <img src="https://picsum.photos/50" alt={name} />
             </figure>
             <p className="account-name">{name}</p>
           </a>
