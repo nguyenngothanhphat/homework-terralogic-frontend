@@ -119,8 +119,8 @@ export default function Dashboard() {
                 <tr>
                   <th className="th-name">Document Name</th>
                   <th>Last Update Date</th>
-                  <th></th>
-                  <th className="sticky"></th>
+                  <th>Assign</th>
+                  <th className="sticky">Action</th>
                 </tr>
               </thead>
               <tbody>
