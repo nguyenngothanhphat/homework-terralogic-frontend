@@ -67,7 +67,7 @@ export default function Home(props) {
           </tbody>
         </table>
       )}
-      <Pagination pages={totalPages && totalPages} />
+      <Pagination pages={totalPages} />
       <Modal isOpen={isOpen} closePopup={closePopup} />
     </div>
   )
