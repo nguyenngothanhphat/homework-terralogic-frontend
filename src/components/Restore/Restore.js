@@ -1,16 +1,18 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { getTrashDocumentsAction, restoneDocumentAction } from '../../redux/actions/AdminAction';
 
 export default function Restone(props) {
   const trashDocuments = useSelector(state => state.AdminReducer.trashDocuments);
+  const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     getAllTrashDocs()
   }, [])
   const handleRestoneDocument = (e, id) => {
     e.preventDefault();
-    dispatch(restoneDocumentAction(id));
+    dispatch(restoneDocumentAction(id, history));
   }
   const getAllTrashDocs = () => {
     dispatch(getTrashDocumentsAction());
@@ -20,7 +22,7 @@ export default function Restone(props) {
       return (
         <tr key={index}>
           <td>{trashDoc.title}</td>
-          <td>
+          <td className="sticky">
             <a href="#" onClick={(e) => handleRestoneDocument(e, trashDoc._id)}><i className="fas fa-trash-restore"></i></a>
           </td>   
         </tr>

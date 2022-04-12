@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
-  const documents = useSelector(state => state.AdminReducer.documents.docs);
+  const documents = useSelector(state => state.AdminReducer.documents?.docs);
   const totalPages = useSelector(state => state.AdminReducer.documents?.pages);
   const {pageNumber} = useParams();
   const dispatch = useDispatch();
@@ -79,7 +79,7 @@ export default function Dashboard() {
     dispatch(createDocumentAction(data));
   }
   const showDocument = () => {
-    return documents?.filter(doc => !doc.deleted).map((doc, index) => {
+    return documents?.map((doc, index) => {
       return (
         <tr key={index}>
           <td className="table-title">{doc.title}</td>

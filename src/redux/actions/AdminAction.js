@@ -11,14 +11,14 @@ import swal from "sweetalert";
 export const getAllDocumentAction = (pageNumber) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction())
+      dispatch(showLoadingAction());
       const {data, status} = await adminServices.getAllDocument(pageNumber);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_DOCUMENT,
           data
         })
-        dispatch(hideLoadingAction())
+        dispatch(hideLoadingAction());
       }
     } catch (err) {
       console.log('error', err)
@@ -32,27 +32,38 @@ export const updateDocumentAction = (dataUpdate, id) => {
       const {status} = await adminServices.updateDocument(dataUpdate, id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        swal({
+          title: "Congratulations! Update Successful",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Okay",
+        }).then((accept) => {
+          if (accept) {
+            window.location.reload();
+          }
+        })
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }
 export const getAllUserUnassignedAction = (id) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction())
+      dispatch(showLoadingAction());
       const {data, status} = await adminServices.getAllUserUnassigned(id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_USER_UNASSIGNED,
           data
         })
-        dispatch(hideLoadingAction())
+        dispatch(hideLoadingAction());
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }
@@ -96,6 +107,7 @@ export const deleteDocumentAction = (id) => {
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }
@@ -106,24 +118,44 @@ export const assignUserForDocument = (id, data) => {
       const {status} = await adminServices.assignUserForDocument(id, data);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        swal({
+          title: "Congratulations! Assign User Successful",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Okay",
+        }).then((accept) => {
+          if (accept) {
+            window.location.reload();
+          }
+        })
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }
-export const restoneDocumentAction = (id) => {
+export const restoneDocumentAction = (id, history) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction());
       const {status} = await adminServices.restoneDocument(id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        swal({
+          title: "Congratulations! Restore Document Successful",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Okay",
+        }).then((accept) => {
+          if (accept) {
+            history.goBack();
+          }
+        })
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }
@@ -141,6 +173,7 @@ export const getTrashDocumentsAction = () => {
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
   }
 }

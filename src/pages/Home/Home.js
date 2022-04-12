@@ -12,7 +12,7 @@ export default function Home(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
   const userDocuments = useSelector(state => state.UserReducer.userDocuments.docConfirms);
-  const totalPages = useSelector(state => state.UserReducer.userDocuments.pages);
+  const totalPages = useSelector(state => state.UserReducer.userDocuments?.pages);
   const dispatch = useDispatch();
   const {pageNumber} = useParams();
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function Home(props) {
           </tbody>
         </table>
       )}
-      <Pagination pages={totalPages} />
+      <Pagination pages={totalPages && totalPages} />
       <Modal isOpen={isOpen} closePopup={closePopup} />
     </div>
   )

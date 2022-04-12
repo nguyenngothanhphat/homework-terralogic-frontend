@@ -1,5 +1,4 @@
 import React from 'react';
-import {useLocation} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { USER_LOGIN } from '../../utils/constants/settingSystem';
 import "./Pagination.css"
