@@ -1,5 +1,7 @@
 import {userServices} from '../../services/UserServices';
+import { STATUS_CODE } from '../../utils/constants/settingSystem';
 import { GET_ALL_DOCUMENT_USER } from '../constants/UserConstant';
+import { hideLoadingAction, showLoadingAction } from './LoadingAction';
 export const getAllDocumentsUserAction = () => {
   return async (dispatch) => {
     try {
@@ -27,8 +29,12 @@ export const changeReadingStatusAction = (id) => {
 export const changeCompletedStatusAction = (id) => {
   return async (dispatch) => {
     try {
-      await userServices.changeCompletedStatus(id);
-      window.location.reload();
+      dispatch(showLoadingAction());
+      const {status} = await userServices.changeCompletedStatus(id);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch(hideLoadingAction());
+        window.location.reload();
+      }
     } catch (err) {
       console.log("error", err);
     }

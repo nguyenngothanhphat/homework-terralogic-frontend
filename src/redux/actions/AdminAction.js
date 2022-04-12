@@ -6,6 +6,7 @@ import {
   GET_ALL_TRASH_DOCUMENT
 } from "../constants/AdminConstant";
 import { STATUS_CODE } from "../../utils/constants/settingSystem";
+import swal from "sweetalert";
 
 export const getAllDocumentAction = (pageNumber) => {
   return async (dispatch) => {
@@ -62,10 +63,25 @@ export const createDocumentAction = (data) => {
       const {status} = await adminServices.createDocument(data);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        swal({
+          title: "Congratulations! Create Document Successful",
+          text: "You clicked the button!",
+          icon: "success",
+          button: "Okay",
+        }).then((accept) => {
+          if (accept) {
+            window.location.reload();
+          }
+        })
       }   
     } catch (err) {
+      dispatch(hideLoadingAction());
       console.log("error", err);
+      swal({
+        title: "Create failed",
+        icon: "error",
+        button: "Re-create",
+      });
     }
   }
 }

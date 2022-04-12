@@ -28,7 +28,8 @@ export default function Header() {
       }
     })
   }
-  const openSidebar = () => {
+  const openSidebar = (e) => {
+    e.preventDefault();
     document.getElementById("sidebar").classList.toggle("active");
     document.getElementById("content-button").classList.toggle("active");
   }
@@ -40,7 +41,7 @@ export default function Header() {
         </a>
       </div>
       <div className="header-content">
-        <a href="#" className="content-button" id="content-button" onClick={() => {openSidebar()}}>
+        <a href="#" className="content-button" id="content-button" onClick={(e) => {openSidebar(e)}}>
           <i className="fas fa-bars content-open"></i>
           <i className="fas fa-times content-close"></i>
         </a>

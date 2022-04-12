@@ -34,7 +34,7 @@ export default function Restone(props) {
         <thead>
           <tr>
             <th>Document Title</th>
-            <th>Restone</th>
+            <th>Restore</th>
           </tr>
         </thead>
         <tbody>

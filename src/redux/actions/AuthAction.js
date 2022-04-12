@@ -1,5 +1,6 @@
 import swal from 'sweetalert';
 import { authService } from "../../services/AuthService"
+import { STATUS_CODE } from '../../utils/constants/settingSystem';
 import { CLEAR_DATA, LOGIN , LOGIN_WITH_GOOGLE } from "../constants/AuthConstant";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 
@@ -8,7 +9,7 @@ export const loginAction = (dataLogin, history) => {
     try {
       dispatch(showLoadingAction())
       const {data, status} = await authService.login(dataLogin);
-      if (status === 200) {
+      if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: LOGIN,
           data
@@ -41,7 +42,7 @@ export const loginWithGoogleAction = (history, token) => {
   return async (dispatch) => {
     try {
       const {data, status} = await authService.loginWithGoogle(token);
-      if (status === 200) {
+      if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: LOGIN_WITH_GOOGLE, 
           data
