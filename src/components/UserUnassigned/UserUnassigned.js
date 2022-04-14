@@ -4,7 +4,8 @@ import {assignUserForDocument, getAllUserUnassignedAction} from '../../redux/act
 import "./UserUnassigned.css";
 
 export default function UserUnassigned(props) {
-  const [userIds, setUserIds] = useState([])
+  const [userIds, setUserIds] = useState([]);
+  const [checked, isChecked] = useState(false);
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
   const reload = useSelector(state => state.AdminReducer.reload);
   const dispatch = useDispatch();

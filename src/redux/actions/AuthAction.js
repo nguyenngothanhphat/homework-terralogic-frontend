@@ -15,7 +15,7 @@ export const loginAction = (dataLogin, history) => {
           data
         })
         dispatch(hideLoadingAction());
-        history.push('/admin/dashboard');
+        history.push('/admin/dashboard/1');
       } 
     } catch (err) {
       dispatch(hideLoadingAction())
@@ -38,7 +38,7 @@ export const loginWithGoogleAction = (history, token) => {
           type: LOGIN_WITH_GOOGLE, 
           data
         })
-        history.push('/')
+        history.push('/1')
       }
     } catch(err) {
       console.log("error", err)

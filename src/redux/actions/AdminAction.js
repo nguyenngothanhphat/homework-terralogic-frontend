@@ -1,4 +1,5 @@
 import swal from "sweetalert";
+import { toast } from 'react-toastify';
 import { adminServices } from "../../services/AdminServices";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 import { 
@@ -34,16 +35,8 @@ export const updateDocumentAction = (dataUpdate, id) => {
       const {status} = await adminServices.updateDocument(dataUpdate, id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        swal({
-          title: "Congratulations! Update Successful",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Okay",
-        }).then((accept) => {
-          if (accept) {
-            dispatch(reloadDocumentAction());
-          }
-        })
+        toast.success("Congratulations! Update Successful");
+        dispatch(reloadDocumentAction());
       }
     } catch (err) {
       console.log("error", err);
@@ -76,16 +69,8 @@ export const createDocumentAction = (data) => {
       const {status} = await adminServices.createDocument(data);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        swal({
-          title: "Congratulations! Create Document Successful",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Okay",
-        }).then((accept) => {
-          if (accept) {
-            dispatch(reloadDocumentAction());
-          }
-        })
+        toast.success("Congratulations! Create Document Successful");
+        dispatch(reloadDocumentAction());
       }   
     } catch (err) {
       dispatch(hideLoadingAction());
@@ -105,6 +90,7 @@ export const deleteDocumentAction = (id) => {
       const {status} = await adminServices.deleteDocument(id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
+        toast.success("Congratulations! Deleted Successful");
         dispatch(reloadDocumentAction())
       }
     } catch (err) {
@@ -120,16 +106,8 @@ export const assignUserForDocument = (id, data) => {
       const {status} = await adminServices.assignUserForDocument(id, data);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        swal({
-          title: "Congratulations! Assign User Successful",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Okay",
-        }).then((accept) => {
-          if (accept) {
-            dispatch(reloadDocumentAction());
-          }
-        })
+        toast.success("Congratulations! Assign User Successful");
+        dispatch(reloadDocumentAction());
       }
     } catch (err) {
       console.log("error", err);
