@@ -1,7 +1,10 @@
-import { HIDE_LOADING, SHOW_LOADING } from "../constants/LoadingConstant";
+import { 
+  HIDE_LOADING, 
+  SHOW_LOADING,
+} from "../constants/LoadingConstant";
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
 }
 export const LoadingReducer = (state = initialState, action) => {
   switch (action.type) {

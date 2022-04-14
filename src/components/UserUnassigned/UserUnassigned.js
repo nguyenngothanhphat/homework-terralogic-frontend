@@ -6,11 +6,12 @@ import "./UserUnassigned.css";
 export default function UserUnassigned(props) {
   const [userIds, setUserIds] = useState([])
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
+  const reload = useSelector(state => state.AdminReducer.reload);
   const dispatch = useDispatch();
   const {_id: id} = props.doc;
   useEffect(() => {
     getAllUsersUnassigned(id);
-  },[id])
+  },[id, reload])
   const getAllUsersUnassigned = (id) => {
     dispatch(getAllUserUnassignedAction(id));
   }

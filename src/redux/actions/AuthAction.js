@@ -7,24 +7,15 @@ import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 export const loginAction = (dataLogin, history) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction())
+      dispatch(showLoadingAction());
       const {data, status} = await authService.login(dataLogin);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: LOGIN,
           data
         })
-        dispatch(hideLoadingAction())
-        swal({
-          title: "Congratulations! Successful login",
-          text: "You clicked the button!",
-          icon: "success",
-          button: "Go to admin page",
-        }).then((accept) => {
-          if (accept) {
-            history.push('/admin/dashboard'); 
-          }
-        })
+        dispatch(hideLoadingAction());
+        history.push('/admin/dashboard');
       } 
     } catch (err) {
       dispatch(hideLoadingAction())

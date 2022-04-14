@@ -13,11 +13,12 @@ export default function Home(props) {
   const [isModeCard, setIsModeCard] = useState(false);
   const userDocuments = useSelector(state => state.UserReducer.userDocuments.docConfirms);
   const totalPages = useSelector(state => state.UserReducer.userDocuments?.pages);
+  const reload = useSelector(state => state.UserReducer.reload);
   const dispatch = useDispatch();
   const {pageNumber} = useParams();
   useEffect(() => {
     getAllDocumentsUser(pageNumber);
-  }, [dispatch, pageNumber])
+  }, [dispatch, pageNumber, reload])
   const getAllDocumentsUser = (pageNumber) => {
     dispatch(getAllDocumentsUserAction(pageNumber));
   }

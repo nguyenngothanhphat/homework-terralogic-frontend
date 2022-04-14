@@ -1,12 +1,13 @@
+import swal from "sweetalert";
 import { adminServices } from "../../services/AdminServices";
 import {showLoadingAction, hideLoadingAction} from './LoadingAction'
 import { 
   GET_ALL_DOCUMENT, 
   GET_ALL_USER_UNASSIGNED,
-  GET_ALL_TRASH_DOCUMENT
+  GET_ALL_TRASH_DOCUMENT,
+  RELOAD_DOCUMENT
 } from "../constants/AdminConstant";
 import { STATUS_CODE } from "../../utils/constants/settingSystem";
-import swal from "sweetalert";
 
 export const getAllDocumentAction = (pageNumber) => {
   return async (dispatch) => {
@@ -40,7 +41,7 @@ export const updateDocumentAction = (dataUpdate, id) => {
           button: "Okay",
         }).then((accept) => {
           if (accept) {
-            window.location.reload();
+            dispatch(reloadDocumentAction());
           }
         })
       }
@@ -82,7 +83,7 @@ export const createDocumentAction = (data) => {
           button: "Okay",
         }).then((accept) => {
           if (accept) {
-            window.location.reload();
+            dispatch(reloadDocumentAction());
           }
         })
       }   
@@ -104,7 +105,7 @@ export const deleteDocumentAction = (id) => {
       const {status} = await adminServices.deleteDocument(id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        dispatch(reloadDocumentAction())
       }
     } catch (err) {
       console.log("error", err);
@@ -126,7 +127,7 @@ export const assignUserForDocument = (id, data) => {
           button: "Okay",
         }).then((accept) => {
           if (accept) {
-            window.location.reload();
+            dispatch(reloadDocumentAction());
           }
         })
       }
@@ -176,5 +177,10 @@ export const getTrashDocumentsAction = () => {
       console.log("error", err);
       dispatch(hideLoadingAction());
     }
+  }
+}
+export const reloadDocumentAction = () => {
+  return {
+    type: RELOAD_DOCUMENT
   }
 }

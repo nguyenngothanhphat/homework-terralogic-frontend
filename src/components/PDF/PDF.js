@@ -7,6 +7,8 @@ import "./PDF.css"
 export default function PDF(props) {
   const dispatch = useDispatch();
   let {_id: id, url, status} = props.doc
+  let checkUrl = url.split(".").pop();
+  console.log("🚀 ~ file: PDF.js ~ line 11 ~ PDF ~ checkUrl", checkUrl)
   useEffect(() => {
     changeReadingStatus();
   }, [])
@@ -23,8 +25,14 @@ export default function PDF(props) {
   }
   return (
     <>
-      <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
-      {status && status !== 'Completed' ? (<button className="btn btn-success" onClick={(e) => {changeCompletedStatus(e)}}>Sign</button>) : ""}
+      {checkUrl !== 'docx' ? (
+        <>
+          <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
+          {status && status !== 'Completed' ? (<button className="btn btn-success" onClick={(e) => {changeCompletedStatus(e)}}>Sign</button>) : ""}
+        </>
+      ) : (<>
+        <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="0%" height="0%" ></iframe>
+      </>)}   
     </>
   )
 }

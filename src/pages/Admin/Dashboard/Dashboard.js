@@ -20,11 +20,12 @@ export default function Dashboard() {
   const [isModeCard, setIsModeCard] = useState(false);
   const documents = useSelector(state => state.AdminReducer.documents?.docs);
   const totalPages = useSelector(state => state.AdminReducer.documents?.pages);
+  const reload = useSelector(state => state.AdminReducer.reload);
   const {pageNumber} = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     getAllDocument(pageNumber);
-  }, [dispatch, pageNumber])
+  }, [dispatch, pageNumber, reload])
   const closePopup = () => {
     setIsOpen(false);
   }

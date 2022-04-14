@@ -1,13 +1,13 @@
 import {userServices} from '../../services/UserServices';
 import { STATUS_CODE } from '../../utils/constants/settingSystem';
-import { GET_ALL_DOCUMENT_USER } from '../constants/UserConstant';
+import { GET_ALL_DOCUMENT_USER, RELOAD_DOCUMENT } from '../constants/UserConstant';
 import { hideLoadingAction, showLoadingAction } from './LoadingAction';
 export const getAllDocumentsUserAction = (pageNumber) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction());
       const {data, status} = await userServices.getAllDocumentsUser(pageNumber);
-      if (status === 200) {
+      if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_DOCUMENT_USER,
           data
@@ -23,7 +23,12 @@ export const getAllDocumentsUserAction = (pageNumber) => {
 export const changeReadingStatusAction = (id) => {
   return async (dispatch) => {
     try {
-      await userServices.changeReadingStatus(id);
+      const {status} = await userServices.changeReadingStatus(id);
+      if (status === STATUS_CODE.SUCCESS) {
+        dispatch({
+          type: RELOAD_DOCUMENT
+        })
+      }
     } catch (err) {
       console.log("error", err);
     }
@@ -36,10 +41,16 @@ export const changeCompletedStatusAction = (id) => {
       const {status} = await userServices.changeCompletedStatus(id);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch(hideLoadingAction());
-        window.location.reload();
+        dispatch(reloadDocumentUserAction());
       }
     } catch (err) {
       console.log("error", err);
+      dispatch(hideLoadingAction());
     }
+  }
+}
+export const reloadDocumentUserAction = () => {
+  return {
+    type: RELOAD_DOCUMENT
   }
 }

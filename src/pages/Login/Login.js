@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import GoogleLogin from 'react-google-login';
 import { loginAction, loginWithGoogleAction } from '../../redux/actions/AuthAction';
-import {CLIENT_ID, USER_LOGIN} from '../../utils/constants/settingSystem';
+import { USER_LOGIN } from '../../utils/constants/settingSystem';
 import "../../App.css"
 import "./Login.css";
 

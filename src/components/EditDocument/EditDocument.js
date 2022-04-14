@@ -22,8 +22,9 @@ export default function EditDocument(props) {
       if (status === 200) {
         setValues({...values, ...data.doc})
       }
-      dispatch(hideLoadingAction())
+      dispatch(hideLoadingAction());
     } catch (err) {
+      dispatch(hideLoadingAction());
       console.log("error", err);
     }
   }
