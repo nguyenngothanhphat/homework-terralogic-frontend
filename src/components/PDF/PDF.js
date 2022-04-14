@@ -8,7 +8,6 @@ export default function PDF(props) {
   const dispatch = useDispatch();
   let {_id: id, url, status} = props.doc
   let checkUrl = url.split(".").pop();
-  console.log("🚀 ~ file: PDF.js ~ line 11 ~ PDF ~ checkUrl", checkUrl)
   useEffect(() => {
     changeReadingStatus();
   }, [])
