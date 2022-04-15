@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore, compose } from "redux";
 import reduxThunk from 'redux-thunk';
 import {ModalReducer} from './reducers/ModalReducer';
 import {AuthReducer} from './reducers/AuthReducer';
@@ -14,6 +14,8 @@ const rootReducer = combineReducers({
   ModalReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(reduxThunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(reduxThunk)))
 
 export default store;

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import { changeReadingStatusAction, changeCompletedStatusAction } from '../../redux/actions/UserAction';
-import { DOMAIN, DOMAIN_TERRA, USER_LOGIN } from '../../utils/constants/settingSystem';
+import { DOMAIN_FILE, USER_LOGIN } from '../../utils/constants/settingSystem';
 import "./PDF.css"
 
 export default function PDF(props) {
@@ -26,11 +26,11 @@ export default function PDF(props) {
     <>
       {checkUrl !== 'docx' ? (
         <>
-          <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
+          <iframe id="iframe1" src={`${DOMAIN_FILE}${url}`} frameBorder={0} width="100%" height="90%" ></iframe>
           {status && status !== 'Completed' ? (<button className="btn btn-success" onClick={(e) => {changeCompletedStatus(e)}}>Sign</button>) : ""}
         </>
       ) : (<>
-        <iframe id="iframe1" src={`${DOMAIN_TERRA}${url}`} frameBorder={0} width="0%" height="0%" ></iframe>
+        <iframe id="iframe1" src={`${DOMAIN_FILE}${url}`} frameBorder={0} width="0%" height="0%" ></iframe>
       </>)}   
     </>
   )

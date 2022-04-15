@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux';
 import swal from 'sweetalert';
 import { TOKEN, USER_LOGIN } from '../../../../utils/constants/settingSystem';
@@ -36,9 +36,9 @@ export default function Header() {
   return (
     <header>
       <div className="header-logo-wrapper">
-        <a href="/admin/dashboard" className="header-logo">
+        <Link href="/admin/dashboard/1" className="header-logo">
           <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" />
-        </a>
+        </Link>
       </div>
       <div className="header-content">
         <a href="#" className="content-button" id="content-button" onClick={(e) => {openSidebar(e)}}>
