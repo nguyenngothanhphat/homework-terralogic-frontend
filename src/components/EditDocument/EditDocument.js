@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import DragUpload from '../DragUpload/DragUpload';
 import {adminServices} from '../../services/AdminServices';
 import {updateDocumentAction} from '../../redux/actions/AdminAction';
@@ -14,6 +14,7 @@ export default function EditDocument(props) {
   const [files, setFiles] = useState(null);
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
+  const isSpinner = useSelector(state => state.LoadingReducer.isSpinner);
   const { _id: id } = props.doc
   const getDocumentById = async (id) => {
     try {
@@ -58,7 +59,11 @@ export default function EditDocument(props) {
           <input type="text" name="description" className="form-control" value={values.description} onChange={handleChange} />
         </div>
         <DragUpload  showbtn={false} files={files} setFiles={setFiles} handleUploadDocument={handleUpdateDocument}  />
-        <button className="btn btn-success btn-update"onClick={(e) => {handleUpdateDocument(e)}}>Update</button>
+        <button className="btn btn-success btn-update"onClick={(e) => {handleUpdateDocument(e)}}>
+          {/* <span className="btn-update-text">Update</span> */}
+          {isSpinner ? (<span className="button-loading"></span>) : (<span className="btn-update-text">Update</span>)}
+          
+        </button>
       </form>
     </>
   )

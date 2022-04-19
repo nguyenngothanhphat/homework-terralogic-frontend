@@ -13,19 +13,23 @@ import CardDocument from '../../../components/CardDocument/CardDocument';
 import Pagination from '../../../components/Pagination/Pagination';
 import "../../../App.css";
 import "./Dashboard.css";
+import SizeChanger from '../../../components/SizeChanger/SizeChanger';
+import SkeletonTable from '../../../components/SkeletonTable/SkeletonTable';
 
 export default function Dashboard() {
   const [files, setFiles] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
+  const [sizePage, setSizePage] = useState(5);
   const documents = useSelector(state => state.AdminReducer.documents?.docs);
   const totalPages = useSelector(state => state.AdminReducer.documents?.pages);
   const reload = useSelector(state => state.AdminReducer.reload);
+  const isLoading = useSelector(state => state.LoadingReducer.isLoading);
   const {pageNumber} = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     getAllDocument(pageNumber);
-  }, [dispatch, pageNumber, reload])
+  }, [dispatch, pageNumber, sizePage, reload])
   const closePopup = () => {
     setIsOpen(false);
   }
@@ -54,7 +58,7 @@ export default function Dashboard() {
     })
   }
   const getAllDocument = (pageNumber) => {
-    dispatch(getAllDocumentAction(pageNumber));
+    dispatch(getAllDocumentAction(pageNumber, sizePage));
   }
   const deleteDocument = (e, doc) => {
     e.preventDefault();
@@ -78,6 +82,10 @@ export default function Dashboard() {
     const data = new FormData();
     data.append('file', files);
     dispatch(createDocumentAction(data));
+  }
+  const handleChangeSizePage = (e) => {
+    e.preventDefault();
+    setSizePage(e.target.value);
   }
   const showDocument = () => {
     return documents?.map((doc, index) => {
@@ -113,7 +121,7 @@ export default function Dashboard() {
             openPopupPDF={openPopupPDF}
             deleteDocument={deleteDocument}
           />
-          </div>) : (
+          </div>) : isLoading ? (<SkeletonTable sizePage={sizePage} />) : (
           <div className="table-wrapper">
             <table>
               <thead>
@@ -130,7 +138,10 @@ export default function Dashboard() {
             </table>
           </div>
         )}
-        <Pagination pages={totalPages} />
+        <div className="dashboard-paginate">
+          <SizeChanger handleChangeSizePage={handleChangeSizePage} />
+          <Pagination pages={totalPages} />
+        </div>
         <DragUpload showbtn={true} files={files} setFiles={setFiles} handleUploadDocument={handleUploadDocument}/>
         <Modal isOpen={isOpen} closePopup={closePopup} />
       </div>

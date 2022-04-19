@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {assignUserForDocument, getAllUserUnassignedAction} from '../../redux/actions/AdminAction';
+import Spinner from '../Spinner/Spinner'
 import "./UserUnassigned.css";
 
 export default function UserUnassigned(props) {
   const [userIds, setUserIds] = useState([]);
   const [checked, isChecked] = useState(false);
   const usersUnassigned = useSelector(state => state.AdminReducer.usersUnassigned);
+  const isSpinner = useSelector(state => state.LoadingReducer.isSpinner)
   const reload = useSelector(state => state.AdminReducer.reload);
   const dispatch = useDispatch();
   const {_id: id} = props.doc;
@@ -49,8 +51,9 @@ export default function UserUnassigned(props) {
             <th>Confirm</th>
           </tr>
         </thead>
-        <tbody>
-          {showUserUnassigned()}
+        <tbody className='text-center'>
+          {!isSpinner ? (showUserUnassigned()) : (<tr><Spinner /></tr>)}
+          {/* {showUserUnassigned()} */}
         </tbody>
       </table>
       <button className="btn btn-primary btn-confirm" onClick={(e) => {handleConfirmAssign(e)}}>Confirm</button>

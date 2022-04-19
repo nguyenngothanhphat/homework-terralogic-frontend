@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Routes() {
   return (
     <BrowserRouter>
-      <LoadingComponent />
+      {/* <LoadingComponent /> */}
       <ToastContainer />
       <Switch>
         <Route exact path="/login" component={Login} />

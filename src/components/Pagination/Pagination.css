@@ -1,3 +1,8 @@
+.dashboard-paginate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .pagination {
   display: flex;
   justify-content: center;
@@ -12,4 +17,8 @@
 .actived {
   background: #0069D9;
   color: #fff;
+}
+.size-changer {
+  padding: 10px;
+  border-radius: 5px;
 }

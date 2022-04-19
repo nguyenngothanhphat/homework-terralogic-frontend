@@ -6,21 +6,23 @@ import CardDocument from '../../components/CardDocument/CardDocument';
 import PDF from '../../components/PDF/PDF';
 import Modal from '../../HOC/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
+import SizeChanger from '../../components/SizeChanger/SizeChanger';
 import "../../App.css";
 
 export default function Home(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModeCard, setIsModeCard] = useState(false);
+  const [sizePage, setSizePage] = useState(5);
   const userDocuments = useSelector(state => state.UserReducer.userDocuments.docConfirms);
   const totalPages = useSelector(state => state.UserReducer.userDocuments?.pages);
   const reload = useSelector(state => state.UserReducer.reload);
   const dispatch = useDispatch();
   const {pageNumber} = useParams();
   useEffect(() => {
-    getAllDocumentsUser(pageNumber);
-  }, [dispatch, pageNumber, reload])
-  const getAllDocumentsUser = (pageNumber) => {
-    dispatch(getAllDocumentsUserAction(pageNumber));
+    getAllDocumentsUser(pageNumber, sizePage);
+  }, [dispatch, pageNumber, sizePage, reload])
+  const getAllDocumentsUser = (pageNumber, sizePage) => {
+    dispatch(getAllDocumentsUserAction(pageNumber, sizePage));
   }
   const closePopup = () => {
     setIsOpen(false);
@@ -32,6 +34,10 @@ export default function Home(props) {
       type: "OPEN_FORM",
       Component: <PDF doc={doc} />
     })
+  }
+  const handleChangeSizePage = (e) => {
+    e.preventDefault();
+    setSizePage(e.target.value);
   }
   const showAllDocumentsUser = () => {
     return userDocuments && userDocuments.map((userDoc, index) => {
@@ -68,7 +74,11 @@ export default function Home(props) {
           </tbody>
         </table>
       )}
-      <Pagination pages={totalPages} />
+      <div className="home-paginate">
+        <SizeChanger handleChangeSizePage={handleChangeSizePage} />
+        <Pagination pages={totalPages} />
+      </div>
+      
       <Modal isOpen={isOpen} closePopup={closePopup} />
     </div>
   )

@@ -37,6 +37,7 @@ export default function Login(props) {
   }
   const handleLogin = (googleData) => {
     let token = googleData.tokenId;
+    console.log("🚀 ~ file: Login.js ~ line 40 ~ handleLogin ~ token", token)
     dispatch(loginWithGoogleAction(history, token))
   }
   const handleFailure = (result) => {

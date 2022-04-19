@@ -1,7 +1,7 @@
 import {baseService} from './baseService';
 export class UserServices extends baseService {
-  getAllDocumentsUser = (pageNumber) => {
-    return this.get(`api/user/documents?pageNumber=${pageNumber}`);
+  getAllDocumentsUser = (pageNumber, sizePage) => {
+    return this.get(`api/user/documents?pageNumber=${pageNumber}&pages=${sizePage}`);
   }
   changeReadingStatus = (id) => {
     return this.get(`api/user/${id}/changeReadingStatus`);

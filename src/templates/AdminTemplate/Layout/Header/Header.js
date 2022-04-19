@@ -36,7 +36,7 @@ export default function Header() {
   return (
     <header>
       <div className="header-logo-wrapper">
-        <Link href="/admin/dashboard/1" className="header-logo">
+        <Link to="/admin/dashboard/1" className="header-logo">
           <img src={require('../../../../assets/img/logo.png')} alt="TERRALOGIC" />
         </Link>
       </div>

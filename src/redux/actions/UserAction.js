@@ -2,11 +2,11 @@ import {userServices} from '../../services/UserServices';
 import { STATUS_CODE } from '../../utils/constants/settingSystem';
 import { GET_ALL_DOCUMENT_USER, RELOAD_DOCUMENT } from '../constants/UserConstant';
 import { hideLoadingAction, showLoadingAction } from './LoadingAction';
-export const getAllDocumentsUserAction = (pageNumber) => {
+export const getAllDocumentsUserAction = (pageNumber, sizePage) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction());
-      const {data, status} = await userServices.getAllDocumentsUser(pageNumber);
+      const {data, status} = await userServices.getAllDocumentsUser(pageNumber, sizePage);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_DOCUMENT_USER,

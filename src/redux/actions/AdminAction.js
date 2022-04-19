@@ -1,7 +1,7 @@
 import swal from "sweetalert";
 import { toast } from 'react-toastify';
 import { adminServices } from "../../services/AdminServices";
-import {showLoadingAction, hideLoadingAction} from './LoadingAction'
+import {showLoadingAction, hideLoadingAction, showSpinnerAction, hideSpinnerAction} from './LoadingAction'
 import { 
   GET_ALL_DOCUMENT, 
   GET_ALL_USER_UNASSIGNED,
@@ -10,11 +10,11 @@ import {
 } from "../constants/AdminConstant";
 import { STATUS_CODE } from "../../utils/constants/settingSystem";
 
-export const getAllDocumentAction = (pageNumber) => {
+export const getAllDocumentAction = (pageNumber, sizePage) => {
   return async (dispatch) => {
     try {
       dispatch(showLoadingAction());
-      const {data, status} = await adminServices.getAllDocument(pageNumber);
+      const {data, status} = await adminServices.getAllDocument(pageNumber, sizePage);
       if (status === STATUS_CODE.SUCCESS) {
         dispatch({
           type: GET_ALL_DOCUMENT,
@@ -31,16 +31,16 @@ export const getAllDocumentAction = (pageNumber) => {
 export const updateDocumentAction = (dataUpdate, id) => {
   return async (dispatch) => {
     try {
-      dispatch(showLoadingAction());
+      dispatch(showSpinnerAction());
       const {status} = await adminServices.updateDocument(dataUpdate, id);
       if (status === STATUS_CODE.SUCCESS) {
-        dispatch(hideLoadingAction());
+        dispatch(hideSpinnerAction());
         toast.success("Congratulations! Update Successful");
         dispatch(reloadDocumentAction());
       }
     } catch (err) {
       console.log("error", err);
-      dispatch(hideLoadingAction());
+      dispatch(hideSpinnerAction());
     }
   }
 }
